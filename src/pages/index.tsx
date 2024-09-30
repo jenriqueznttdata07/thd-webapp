@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Head from "next/head";
 import Image from "next/image";
 import localFont from "next/font/local";
