@@ -1,5 +1,4 @@
 'use client'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "@/styles/Home.module.css";
 import Footer from '@/components/Footer';
 
