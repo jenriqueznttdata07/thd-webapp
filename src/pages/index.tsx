@@ -25,96 +25,120 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div
-        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
-      >
-        <main className={styles.main}>
-          <Image
-            className={styles.logo}
-            src="https://nextjs.org/icons/next.svg"
-            alt="Next.js logo"
-            width={180}
-            height={38}
-            priority
-          />
-          <ol>
-            <li>
-              Get started by editing <code>src/pages/index.tsx</code>.
-            </li>
-            <li>Save and see your changes instantly.</li>
-          </ol>
+      <div className="header">
+      {<h2>NAVBAR </h2>}
+    </div>
+    
+    
+    <div className="container">
 
-          <div className={styles.ctas}>
-            <a
-              className={styles.primary}
-              href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                className={styles.logo}
-                src="https://nextjs.org/icons/vercel.svg"
-                alt="Vercel logomark"
-                width={20}
-                height={20}
-              />
-              Deploy now
-            </a>
-            <a
-              href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.secondary}
-            >
-              Read our docs
-            </a>
-          </div>
-        </main>
-        <footer className={styles.footer}>
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="https://nextjs.org/icons/file.svg"
-              alt="File icon"
-              width={16}
-              height={16}
-            />
-            Learn
-          </a>
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="https://nextjs.org/icons/window.svg"
-              alt="Window icon"
-              width={16}
-              height={16}
-            />
-            Examples
-          </a>
-          <a
-            href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="https://nextjs.org/icons/globe.svg"
-              alt="Globe icon"
-              width={16}
-              height={16}
-            />
-            Go to nextjs.org →
-          </a>
-        </footer>
+
+
+
+<div className="main-content">
+
+  {/* Sección 1 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="banner p-4 border bg-light rounded">
+        <h2 className="text-center">SLIDER</h2>
       </div>
+    </div>
+  </div>
+
+  {/* Sección 2 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="banner p-4 border bg-light rounded">
+        <h2 className="text-center">PROMOCIONES DESCUENTOS</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* Sección 3 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="features p-4 border bg-light rounded">
+        <h2 className="text-center">SLIDER - Compra por categorías</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* Sección 4 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="testimonials p-4 border bg-light rounded">
+        <h2 className="text-center">Las Mejores Promociones</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* Sección 5 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="testimonials p-4 border bg-light rounded">
+        <h2 className="text-center">Días de Iluminación</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* Sección 6 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="testimonials p-4 border bg-light rounded">
+        <h2 className="text-center">Descubre lo que menos esperas</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* Sección 7 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="testimonials p-4 border bg-light rounded">
+        <h2 className="text-center">SLIDER COMPRAS RÁPIDAS</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* Sección 8 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="testimonials p-4 border bg-light rounded">
+        <h2 className="text-center">Juntos logramos más</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* Sección 9 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="testimonials p-4 border bg-light rounded">
+        <h2 className="text-center">Juntos hacemos tu proyecto</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* Sección 10 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="testimonials p-4 border bg-light rounded">
+        <h2 className="text-center">Métodos de pago</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* Sección 11 */}
+  <div className="row justify-content-center">
+    <div className="col-12 col-md-8 mb-4">
+      <div className="testimonials p-4 border bg-light rounded">
+        <h2 className="text-center">Especiales para ti</h2>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+    
     </>
   );
 }
