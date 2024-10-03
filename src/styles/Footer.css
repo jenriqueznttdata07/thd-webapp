@@ -1,0 +1,80 @@
+.footer-divider {
+  border: none;
+  border-top: 3px solid #f1f1f1;
+  margin-bottom: 2rem;
+}
+
+.social-icons a {
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ff6600;
+}
+
+.brand-logo {
+  height: 40px;
+  width: auto;
+}
+
+footer ul {
+  padding-left: 0;
+}
+
+footer ul li {
+  list-style-type: none;
+}
+
+footer ul li a {
+  color: #333;
+  text-decoration: none;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
+}
+
+footer hr {
+  margin: 2rem 0;
+}
+
+footer .list-inline-item a {
+  color: #555;
+}
+
+footer .list-inline-item a:hover {
+  text-decoration: underline;
+}
+
+footer p, footer a {
+  font-size: 0.875rem;
+}
+
+input.form-control {
+  max-width: 300px;
+}
+
+.brand-logo {
+  max-height: 40px; /* Ajusta la altura máxima a 40px */
+  width: auto; /* Permite que el ancho se ajuste automáticamente */
+  margin: 10px; /* Espacio entre las imágenes */
+  display: inline-block; /* Para que se alineen en una fila */
+  vertical-align: middle; /* Alineación vertical */
+}
+
+.brand-logos-container {
+  display: flex;
+  justify-content: center; /* Centra las imágenes */
+  flex-wrap: wrap; /* Las imágenes se ajustarán si no caben en una fila */
+  gap: 20px; /* Espacio entre las imágenes */
+  padding: 20px 0; /* Espaciado superior e inferior */
+  align-items: center; /* Alinea verticalmente las imágenes */
+}
+
+
+@media (max-width: 768px) {
+.brand-logo {
+  height: 30px; /* Ajusta el tamaño para pantallas más pequeñas */
+}
+} 
