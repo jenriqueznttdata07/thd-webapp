@@ -3,10 +3,6 @@ import { getAuth } from "@/app/services/auth.service";
 import { useAppDispatch } from "@/app/store";
 import { useRouter } from "next/navigation";
 
-
-
-import './SignInPage.css';
-
 interface OtraPaginaProps {
   emailFromPreviousPage: string; // Prop para recibir el email
 }

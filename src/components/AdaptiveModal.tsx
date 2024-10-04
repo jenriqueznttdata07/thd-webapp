@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/Adaptivemodal.css';
+import '../styles/AdaptiveModal.css';
 
 interface MyModalProps {
   title: string;
@@ -15,7 +15,9 @@ interface MyModalProps {
 const MyModal: React.FC<MyModalProps> = ({ title, children, show, onHide, side}) => {
     
   return (
-    <Modal show={show} onHide={onHide} className={`custom-modal ${side}`}>
+    <>
+    {show && <div className="backdrop-custom" onClick={onHide} />} {/* Backdrop personalizado */}
+    <Modal show={show} onHide={onHide} className={`custom-modal ${side}`} backdrop="static" keyboard={false}>
       <Modal.Header closeButton className="modal-header-fixed">
       <Modal.Title className="modal-title-custom">{title}</Modal.Title>
       </Modal.Header>
@@ -23,6 +25,7 @@ const MyModal: React.FC<MyModalProps> = ({ title, children, show, onHide, side})
         {children}
       </Modal.Body>
     </Modal>
+   </>
   );
 };
     

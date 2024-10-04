@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useState} from 'react';
+import  AdaptiveModal from '@/components/AdaptiveModal'
+import Sig from '@/components/SignInModalContent'
 import { Container, Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
 const CustomNavbar: React.FC = () => {
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalContent, setModalContent] = useState<React.ReactNode>(null);
+
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
+
+  const handleButtonClick = (title: string, content: React.ReactNode) => {
+    setModalTitle(title);
+    setModalContent(content);
+    
+    handleShow();
+  };
+
   return (
     <>
       {/* Línea naranja superior */}
@@ -65,9 +82,10 @@ const CustomNavbar: React.FC = () => {
 
   <Nav.Link href="#">
     <div className="icon-container">
-      <img src="/images/me.png" alt="Account Icon" className="nav-icon" />
+      <img src="/images/me.png" alt="Account Icon" className="nav-icon" onClick={() => handleButtonClick('Sign In or Create an Account', <Sig /> )}/>
       <span className="icon-text">Me</span>
     </div>
+    
   </Nav.Link>
 
   <Nav.Link href="#">
@@ -79,6 +97,14 @@ const CustomNavbar: React.FC = () => {
 </Nav>
         </Container>
       </Navbar>
+      <AdaptiveModal 
+        title={modalTitle}
+        show={showModal}
+        onHide={handleClose}
+        side='right'
+      >
+        {modalContent}
+      </AdaptiveModal>
     </>
   );
 };

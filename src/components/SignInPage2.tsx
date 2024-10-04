@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './styles/SignInPage.css';
+import Link from 'next/link';
 
 const SingInPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -13,8 +14,11 @@ const SingInPage: React.FC = () => {
     setIsValid(emailPattern.test(emailValue));
   };
 
-  const handleContinueClick = () => {
+  const handlethdLogo = () =>{
     window.location.href = 'https://www.homedepot.com'; //change this url 
+  } 
+  const handleContinueClick = () => {
+    
   };
 
   const handleBackClick = () => {
@@ -22,6 +26,7 @@ const SingInPage: React.FC = () => {
   };
 
   return (
+    <Link href={"/signinpage"}>
     <div className="flex-container">
       <button type="button" className="logo-button" onClick={handleContinueClick}>
         <img
@@ -90,6 +95,7 @@ const SingInPage: React.FC = () => {
         For Two-Factor Authentication, message and data rates may apply.
       </div>
     </div>
+    </Link>
   );
 };
 

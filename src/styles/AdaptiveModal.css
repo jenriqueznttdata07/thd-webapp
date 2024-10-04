@@ -20,16 +20,25 @@
 }
 
 .custom-modal {
-    position: fixed;
+    position: absolute;
     /* Mantener en la misma posición al hacer scroll */
     top: 60px;
     /* Ajusta según sea necesario */
     transition: opacity 0.3s ease;
+    z-index: 2050;
     /* Solo necesitamos transición para opacidad */
 
 
 }
-
+.backdrop-custom {
+    position: fixed; /* Para cubrir el resto de la pantalla */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    z-index: 100; /* Asegúrate de que esté por debajo del modal */
+  }
 .custom-modal.right .modal-dialog {
     margin-right: 0;
     /* Eliminar margen para que ocupe todo el alto */

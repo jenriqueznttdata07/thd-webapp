@@ -7,9 +7,14 @@ import  pro from '../icons/pro.png';
 import  products from '../icons/products.png';
 import  profile from '../icons/profile.png';
 import  track from '../icons/track.png';
+import { useRouter } from "next/navigation";
+
 //import { useNavigate } from 'react-router-dom';
 
 const ModalContent: React.FC = () => {
+
+    const router = useRouter();
+
 
     //const navigate = useNavigate(); // Hook para la navegación
 
@@ -29,7 +34,7 @@ const ModalContent: React.FC = () => {
                 <Button
                     className="custom-button"
                     variant="secondary"
-                    //onClick={() => navigate('/signinpage')}
+                    onClick={() => router.push('/signinpage')}
                 >
                     Sign in
                 </Button>
@@ -61,7 +66,7 @@ const ModalContent: React.FC = () => {
                         className="button-list"
                     >
                         <div className="icon-container">
-                            {item.icon}
+                            {}
                         </div>
                         <span className="sui-font-regular sui-text-base sui-tracking-normal sui-normal-case sui-line-clamp-unset sui-text-primary">
                             {item.text}
