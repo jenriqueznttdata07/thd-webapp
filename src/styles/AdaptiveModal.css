@@ -1,0 +1,160 @@
+/* modal */
+.modal-header-fixed {
+    position: sticky;
+    /* O fixed */
+    top: 0;
+    /* Fija en la parte superior */
+    background-color: white;
+    /* Fondo blanco para que no se mezcle con el contenido */
+    z-index: 1050;
+    /* Asegúrate de que esté por encima del contenido */
+    border-bottom: 1px solid #dee2e6;
+    /* Añadir un borde inferior opcional */
+}
+
+.modal-title-custom {
+    font-size: 1.1rem;
+    /* Ajusta el tamaño según sea necesario */
+    font-weight: bold;
+    /* Puedes cambiar el peso de la fuente */
+}
+
+.custom-modal {
+    position: fixed;
+    /* Mantener en la misma posición al hacer scroll */
+    top: 60px;
+    /* Ajusta según sea necesario */
+    transition: opacity 0.3s ease;
+    /* Solo necesitamos transición para opacidad */
+
+
+}
+
+.custom-modal.right .modal-dialog {
+    margin-right: 0;
+    /* Eliminar margen para que ocupe todo el alto */
+    height: 100%;
+    /* Altura completa */
+}
+
+.custom-modal.left .modal-dialog {
+    margin-left: 0;
+    /* Eliminar margen para que ocupe todo el alto */
+    height: 100%;
+    /* Altura completa */
+}
+
+.custom-modal .modal-content {
+    height: 100%;
+    /* Altura completa del contenido */
+    border: none;
+    /* Sin borde */
+    border-radius: 0;
+    /* Sin bordes redondeados */
+}
+
+
+/* list items*/
+
+.button-group-container {
+    display: flex;
+    justify-content: center;
+    /* Centra los botones horizontalmente */
+    gap: 10px;
+    /* Espacio de 10px entre los botones */
+}
+
+.custom-button {
+    background-color: #FF6100;
+    /* Fondo anaranjado */
+    color: white;
+    /* Texto blanco */
+    border: none;
+    /* Sin borde por defecto */
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.custom-button:hover {
+    background-color: black;
+    /* Fondo negro al pasar el mouse */
+    color: white;
+    /* Texto blanco al pasar el mouse */
+}
+
+.custom-button {
+    background-color: #FF6100;
+    /* Fondo anaranjado */
+    color: white;
+    /* Texto blanco */
+    border: none;
+    /* Sin borde por defecto */
+}
+
+.custom-button:hover {
+    background-color: black;
+    /* Fondo negro al pasar el mouse */
+    color: white;
+    /* Texto blanco al pasar el mouse */
+}
+
+.custom-button-2 {
+    background-color: white;
+    /* Fondo blanco */
+    color: #FF6100;
+    /* Texto anaranjado */
+    border: 2px solid #FF6100;
+    /* Contorno anaranjado */
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.custom-button-2:hover {
+    background-color: black;
+    /* Fondo negro al pasar el mouse */
+    color: white;
+    /* Texto blanco al pasar el mouse */
+}
+
+
+
+.button-list:hover {
+    background-color: black;
+    /* Cambiar color de fondo al pasar el cursor */
+    color: white;
+    /* Cambiar color de texto al pasar el cursor */
+}
+
+.icon-container {
+    margin-right: 10px;
+    /* Espacio entre el ícono y el texto */
+    display: flex;
+    align-items: center;
+    /* Centrar verticalmente */
+    width: 24px;
+    /* Ajustar al tamaño deseado */
+    height: 24px;
+    /* Ajustar al tamaño deseado */
+}
+
+.button-list {
+    display: flex;
+    /* Usar flexbox */
+    align-items: center;
+    /* Centrar verticalmente */
+    background-color: whitesmoke;
+    /* Fondo blanco */
+    padding: 25px;
+    /* Espaciado interno */
+    cursor: pointer;
+    /* Cambiar cursor a puntero */
+    width: 100%;
+    /* Ancho completo */
+    box-sizing: border-box;
+    /* Incluir padding y border en el ancho total */
+    color: black;
+    border-left: none;
+    /* Quita el borde izquierdo */
+    border-right: none;
+
+}
