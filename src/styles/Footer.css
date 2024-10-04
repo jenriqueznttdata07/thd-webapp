@@ -78,3 +78,33 @@ input.form-control {
   height: 30px; /* Ajusta el tamaño para pantallas más pequeñas */
 }
 } 
+
+/* Estilo para el contenedor de texto del footer */
+.footer-text-container {
+  display: flex; /* Usa Flexbox para alinear horizontalmente */
+  flex-direction: column; /* Mantiene el contenido en columnas */
+  align-items: center; /* Centra el contenido horizontalmente */
+  margin: 2rem 0; /* Espaciado superior e inferior */
+}
+
+/* Estilo para el texto principal del footer */
+.footer-text {
+  font-size: 1rem; /* Tamaño de fuente ajustable */
+  font-weight: bold; /* Negrita para mayor énfasis */
+  color: #333; /* Color del texto */
+  margin-right: 1rem; /* Espaciado a la derecha */
+}
+
+/* Estilo para el número de contacto */
+.contact-info {
+  font-size: 0.875rem; /* Tamaño de fuente del texto de contacto */
+  color: #666; /* Color gris para el texto de contacto */
+}
+
+/* Estilo para la línea de separación en el footer */
+.footer-divider {
+  border: none;
+  border-top: 3px solid #f1f1f1;
+  margin: 0rem 1rem; /* Espaciado superior e inferior de la línea */
+}
+

@@ -1,0 +1,104 @@
+/* Línea naranja superior */
+.top-line {
+  background-color: #f96302; /* Naranja Home Depot */
+  height: 30px; /* Altura de la línea */
+  width: 100%; /* Ancho completo */
+  display: flex; /* Usar flexbox para alinear elementos */
+  justify-content: center; /* Centrar contenido horizontalmente */
+  align-items: center; /* Centrar contenido verticalmente */
+}
+
+/* Estilo del texto en la línea superior */
+.top-line p {
+  color: white; /* Cambiar color del texto a blanco */
+  margin: 0; /* Eliminar margen para centrar adecuadamente */
+  padding: 5px 0; /* Espaciado opcional */
+  font-weight: bold; /* Hacer el texto en negrita */
+}
+
+/* Logo de Home Depot */
+.home-depot-logo {
+  max-height: 50px; /* Ajustar el tamaño del logo */
+  width: auto; /* Mantener la relación de aspecto */
+}
+
+/* Estilo de la barra de navegación */
+.custom-navbar {
+  background-color: #fff;
+  padding: 0.5rem 15rem; /* Espaciado interno de la barra */
+  border-bottom: 1px solid #ddd; /* Línea de separación inferior */
+  display: flex; /* Usar flexbox para alinear elementos */
+  align-items: center; /* Centrar elementos verticalmente */
+}
+
+/* Barra de búsqueda */
+.search-bar {
+  flex-grow: 1; /* Permitir que la barra de búsqueda ocupe espacio */
+  display: flex; /* Usar flexbox */
+  justify-content: center; /* Centrar la barra de búsqueda */
+  margin: 0 20px; /* Espaciado entre barra de búsqueda e íconos */
+}
+
+.search-bar input {
+  width: 300px; /* Ajustar el tamaño de la barra de búsqueda */
+  max-width: 100%; /* Asegurar que no exceda el contenedor */
+  background-color: #f1f1f1;
+}
+
+/* Botón de búsqueda */
+.search-button {
+  background-color: #f96302; /* Color de fondo del botón */
+  border: none;
+  color: white; /* Color del texto */
+  padding: 0.5rem 1rem; /* Ajustar el espaciado */
+}
+
+/* Sección de íconos */
+.icon-section {
+  display: flex; /* Usar flexbox para alinear íconos y texto */
+  align-items: center; /* Centrar íconos y texto verticalmente */
+}
+
+/* Contenedor de cada ícono */
+.icon-container {
+  display: flex; /* Usar flexbox para alinear el ícono y el texto */
+  flex-direction: column; /* Colocar el ícono encima del texto */
+  align-items: center; /* Centrar elementos horizontalmente */
+  margin: 0 10px; /* Espaciado entre íconos */
+}
+
+/* Íconos de navegación */
+.nav-icon {
+  width: 24px; /* Ajustar tamaño de los íconos */
+  height: auto; /* Mantener relación de aspecto */
+}
+
+/* Estilo para el texto de los íconos */
+.icon-text {
+  font-size: 12px; /* Tamaño de la fuente (ajusta según necesites) */
+  font-weight: bold; /* Estilo de fuente en negrita */
+  color: #000; /* Color del texto */
+  margin-top: 4px; /* Espaciado entre ícono y texto */
+  text-align: center; /* Centrar el texto debajo del ícono */
+}
+
+/* Estilo para el texto "10PM" */
+.icon-text {
+  font-size: 16px; /* Tamaño de la fuente */
+  font-weight: bold; /* Estilo de fuente en negrita */
+  color: #000; /* Color del texto (puedes cambiarlo a blanco si lo prefieres) */
+  margin: 0 10px; /* Espaciado a los lados del texto */
+}
+
+/* Alineación de los elementos de la barra de navegación */
+.hd-navbar .nav-link {
+  display: flex; /* Usar flexbox para alinear iconos y texto */
+  align-items: center; /* Centrar íconos y texto verticalmente */
+  color: #000; /* Color del texto de los enlaces */
+  padding: 0 10px; /* Espaciado interno de los enlaces */
+  margin: 0 10px; /* Ajustar margen entre los enlaces */
+}
+
+.hd-navbar .nav-link:hover {
+  color: #f96302; /* Color de los enlaces al pasar el ratón */
+}
