@@ -1,3 +1,4 @@
+import "@/styles/CreateAccount.css";
 
 const CreateAccount: React.FC = () => {
    return (
@@ -34,6 +35,39 @@ const CreateAccount: React.FC = () => {
                 <div>
                     <img src="/images/track-your-orders.png" alt="Track Your Orders" />
                     <p>Track Your Orders</p>
+                </div>
+                <div>
+                    <div>
+                        <button>2</button>
+                        <p>My Password will be</p>
+                    </div>
+                    <div>
+                        <input type="text" />
+                        <button>Show</button>
+                        <p>Create a strong password</p>
+                        <p>Password must contain:</p>
+                        <p>9 characters minimum</p>
+                        <p>And 3 of the following</p>
+                        <p>Uppercase letter</p>
+                        <p>Lowercase letter</p>
+                        <p>Number</p>
+                        <p>Special characters</p>
+                        <p>Stregth:</p>
+                        <div>
+                            <div className="progress">
+                                <div className="progress-bar bg-danger" style={{ width: '100%' }}></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <button>3</button>
+                        <p>My phone number will be</p>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Enter a phone number"/>
+                    </div>
                 </div>
             </div>
             <div>
