@@ -1,13 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { getAuth } from "@/app/services/auth.service";
+import { useAppDispatch } from "@/app/store";
+import { useRouter } from "next/navigation";
+
+
+
 import './SignInPage.css';
 
 interface OtraPaginaProps {
   emailFromPreviousPage: string; // Prop para recibir el email
 }
 
+interface User {
+    email: string;
+    password: string;
+}
+
 const PasswordPage: React.FC<OtraPaginaProps> = ({ emailFromPreviousPage }) => {
   const [email, setEmail] = useState(emailFromPreviousPage);
   const [isValid, setIsValid] = useState(false);
+  const [values, setValues] = useState<User>({ email: '', password: ''});
+  const router = useRouter();
+
+  setValues({...values, email: emailFromPreviousPage});
+
+  const dispatch = useAppDispatch();
+
+
+
 
   useEffect(() => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -15,8 +35,10 @@ const PasswordPage: React.FC<OtraPaginaProps> = ({ emailFromPreviousPage }) => {
   }, [email]);
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const emailValue = event.target.value;
-    setEmail(emailValue);
+    const { name, value } = event.target;
+    setValues({...values, [name]: value});
+    //const emailValue = event.target.value;
+    //setEmail(emailValue);
   };
 
   const handleContinueClick = () => {
@@ -27,9 +49,18 @@ const PasswordPage: React.FC<OtraPaginaProps> = ({ emailFromPreviousPage }) => {
     window.history.back();
   };
 
-  const handleAnotherActionClick = () => {
-    // Acción para el nuevo botón
-    console.log('Another action triggered');
+  const handleAnotherActionClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    try {
+        const response = await getAuth(values);
+        const id = response.id ? response.id : ''
+        //dispatch(setJid(id))
+        //dispatch(setAuth(true))
+        router.push('/account');
+    } catch(err) {
+        console.error(err);
+    } finally {
+       // setLoading(false);
+    }
   };
 
   return (
@@ -70,7 +101,7 @@ const PasswordPage: React.FC<OtraPaginaProps> = ({ emailFromPreviousPage }) => {
               id="username"
               type="email"
               autoComplete="on"
-              value={email}
+              value={values.password}
               onChange={handleEmailChange}
               aria-describedby="username-status-message"
               className="email-input"
