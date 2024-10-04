@@ -1,10 +1,15 @@
 'use client'
 import styles from "@/styles/Home.module.css";
 import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+import "@/styles/Navbar.css";
+import "@/styles/Footer.css";
+
 
 const Home = () => {
     return (
         <>
+         <Navbar />
             <div>
                  {/* Contenedor Principal */}
       <div className="container">
