@@ -6,7 +6,11 @@ const Footer: React.FC = () => {
     <footer className="bg-light py-5">
       <div className="container">
         {/* Línea divisoria */}
+        <span className="slogan">How doers get more done™</span>
+    <span className="contact">Need Help? Please call us at: <a href="tel:1-800-HOME-DEPOT">1-800-HOME-DEPOT</a> (1-800-466-3337)</span>
         <hr className="footer-divider" />
+        
+
 
         {/* Parte superior con texto e información */}
         <div className="row">

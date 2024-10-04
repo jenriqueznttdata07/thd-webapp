@@ -78,3 +78,66 @@ input.form-control {
   height: 30px; /* Ajusta el tamaño para pantallas más pequeñas */
 }
 } 
+
+.footer-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5; /* Fondo similar al de la primera imagen */
+  padding: 10px 30px; /* Ajuste del padding para mayor separación horizontal */
+  font-size: 14px; /* Tamaño de texto más pequeño */
+  border-top: 1px solid #ccc; /* Línea divisoria entre el footer y el contenido superior */
+}
+
+.slogan {
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.contact a {
+  color: #333; /* Color del enlace similar al de Home Depot */
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline; /* Efecto hover en el enlace */
+}
+
+.contact {
+  font-size: 12px;
+  color: #333;
+  margin-left: 600px;  /* Aumento de la separación entre los elementos */
+}
+
+.footer-promo {
+  display: flex;
+  justify-content: space-between; /* Alinea el texto a la izquierda y los íconos a la derecha */
+  align-items: center;
+  padding: 20px 30px; /* Añade suficiente espacio alrededor */
+  background-color: #f5f5f5;
+}
+
+.promo-text p {
+  font-size: 14px;
+  color: #333;
+}
+
+.promo-icons {
+  display: flex; /* Coloca los íconos en una fila */
+}
+
+.icon {
+  width: 24px; /* Ajusta el tamaño del ícono */
+  height: 24px;
+  margin-left: 10px; /* Añade espacio entre los íconos */
+}
+
+.promo-icons img {
+  cursor: pointer; /* Añade un cursor de mano al pasar sobre los íconos */
+}
+
+.promo-icons img:hover {
+  opacity: 0.8; /* Efecto hover */
+}
+
