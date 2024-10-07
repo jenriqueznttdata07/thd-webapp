@@ -1,11 +1,17 @@
 'use client'
 import React, { useState } from 'react';
 import './page.css';
+import { useRouter } from "next/navigation";
+
+
 import Link from 'next/link';
 
 const page: React.FC = () => {
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(false);
+
+  const router = useRouter();
+
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const emailValue = event.target.value;
@@ -20,6 +26,8 @@ const page: React.FC = () => {
   } 
   const handleContinueClick = () => {
     
+    router.push(`/passwordpage?email=${encodeURIComponent(email)}`);
+  
   };
 
   const handleBackClick = () => {
