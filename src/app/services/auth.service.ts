@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse, isAxiosError } from "axios";
-import { User } from "../domain/models/User";
+import { User } from "../../domain/models/User";
 
 export const getAuth = async (user: User): Promise<User> => {
     const response = await axios.get<null, AxiosResponse<User[]> | AxiosError<Error>>(`http://localhost:3000/users?username=${user.email}&password=${user.password}`)
