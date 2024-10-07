@@ -1,6 +1,7 @@
 'use client'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "@/styles/Footer.css";
+import ReduxProvider from './store/ReduxProvider';
 
 interface RootLayoutProps {
     children: React.ReactNode
@@ -16,7 +17,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <link rel="icon" href="/favicon.ico" />
             </head>
             <body>
-                {children}
+                <ReduxProvider>{children}</ReduxProvider>
             </body>
         </html>
     )
