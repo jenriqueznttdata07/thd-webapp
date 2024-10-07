@@ -1,0 +1,181 @@
+/* General container styling */
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Occupies the full height of the window */
+    padding: 20px;
+    box-sizing: border-box;
+    /* Ensures padding does not affect size */
+}
+
+/* Logo button styling */
+.logo-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    /* Space below the logo */
+}
+
+.logo-image {
+    width: 150px;
+    /* Adjust the logo size as necessary */
+}
+
+/* Header text styling */
+.header-container {
+    margin-bottom: 20px;
+    /* Space below the header */
+}
+
+.header-text {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.back-button-container {
+    width: 100%;
+    /* Ensures the button container takes the full width */
+    max-width: 400px;
+    /* Ensure it has the same width as the input */
+    display: flex;
+    /* Uses flexbox to center content */
+    justify-content: flex-start;
+    /* Aligns content to the start */
+}
+
+/* Back button styling */
+.back-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 0;
+    margin-bottom: 10px;
+    /* Space below the back button */
+    position: relative;
+    /* Necessary for the border */
+}
+
+.back-button:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    /* Adjusts the distance of the border from the button */
+    left: 0;
+    right: 0;
+    /* Covers the full width of the button */
+    height: 2px;
+    /* Height of the border */
+    background-color: #0073e6;
+    /* Color of the border */
+}
+
+.back-arrow-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Form and input styling */
+.email-form {
+    width: 100%;
+    max-width: 400px;
+    /* Limit the maximum width of the form */
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+/* Ensures the label is block and centered */
+.input-label {
+    display: block;
+    /* This ensures the label takes the full line */
+    margin-bottom: 8px;
+    /* Space between label and input */
+    font-weight: 600;
+    font-size: 16px;
+    /* Font size of the label */
+}
+
+.input-container {
+    width: 100%;
+    /* Ensures the input takes the full available width */
+}
+
+.email-input {
+    width: 100%;
+    /* Ensures the input takes the full available width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Success and error icons */
+.icon-success,
+.icon-error {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+/* Styling for the success/error icons */
+.icon-success {
+    color: green;
+}
+
+.icon-error {
+    color: red;
+}
+
+/* Error message styling */
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+/* Continue button styling */
+.continue-button {
+    width: 100%;
+    /* Ensures the button takes the full available width */
+    padding: 10px;
+    background-color: #FF6100;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Disable state for the continue button */
+.continue-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Terms and conditions styling */
+.terms-container {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    /* Ensures the text occupies the same width as the button */
+    max-width: 400px;
+    /* Limits the width of the terms container */
+}
+
+.terms-link {
+    color: #0073e6;
+    text-decoration: underline;
+}
+
+.terms-link:hover {
+    text-decoration: none;
+}
