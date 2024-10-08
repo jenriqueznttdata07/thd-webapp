@@ -1,3 +1,4 @@
+'use client'
 import React, { useState} from 'react';
 import  AdaptiveModal from '@/components/AdaptiveModal'
 import Sig from '@/components/SignInModalContent'
@@ -83,7 +84,7 @@ const CustomNavbar: React.FC = () => {
   <Nav.Link href="#">
     <div className="icon-container">
       <img src="/images/me.png" alt="Account Icon" className="nav-icon" onClick={() => handleButtonClick('Sign In or Create an Account', <Sig /> )}/>
-      <span className="icon-text">Me</span>
+      <span className="icon-text">Log in</span>
     </div>
     
   </Nav.Link>
@@ -110,3 +111,4 @@ const CustomNavbar: React.FC = () => {
 };
 
 export default CustomNavbar;
+
