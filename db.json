@@ -3,7 +3,15 @@
     {
       "id": "1acb8ebc",
       "username": "g.mendoza@nttdata.com",
-      "password": "Qwerty123"
+      "password": "Qwerty123",
+      "isFirstTime": true,
+      "hasActiveQuickSignIn": false
+    }
+  ],
+  "auth-codes": [
+    {
+      "username": "g.mendoza@nttdata.com",
+      "code": "454786"
     }
   ]
 }
