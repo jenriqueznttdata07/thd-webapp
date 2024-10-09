@@ -78,23 +78,28 @@ const ModalContent: React.FC = () => {
                         Are You a Pro?
                         Get online tools to manage and grow your business – plus, Pro Xtra Members unlock more benefits and savings. Learn More          </span>
                 </button>
+                <div className="divider" />
             </div>
             <div>
       {items.map((item, index) => (
+        <div className='button-list:hover'>
         <button
           key={index}
           onClick={() => handleNavigation(item.text)}  // Llama la función handleNavigation
           className="button-list"
         >
           <div className="icon-container">
-            {/* Aquí podrías colocar un ícono si tienes alguno */}
+          <img src={item.icon.src} alt={item.icon.src} className='icon-image'/>
           </div>
           <span className="sui-font-regular sui-text-base sui-tracking-normal sui-normal-case sui-line-clamp-unset sui-text-primary">
             {item.text}
           </span>
         </button>
+        <div className="divider" />
+        </div>
       ))}
     </div>
+
         </>
     );
 };

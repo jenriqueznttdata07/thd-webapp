@@ -66,6 +66,7 @@ body.modal-open {
     display: flex;
     justify-content: center; /* Centra los botones horizontalmente */
     gap: 10px; /* Espacio de 10px entre los botones */
+
 }
 
 .custom-button {
@@ -95,9 +96,13 @@ body.modal-open {
 }
 
 .button-list:hover {
-    background-color: black; /* Cambiar color de fondo al pasar el cursor */
-    color: white; /* Cambiar color de texto al pasar el cursor */
+    background-color: rgb(240, 237, 237); /* Cambiar color de fondo al pasar el cursor */
 }
+
+.divider {
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+  }
 
 .icon-container {
     margin-right: 10px; /* Espacio entre el ícono y el texto */
@@ -110,12 +115,10 @@ body.modal-open {
 .button-list {
     display: flex; /* Usar flexbox */
     align-items: center; /* Centrar verticalmente */
-    background-color: whitesmoke; /* Fondo blanco */
-    padding: 25px; /* Espaciado interno */
+    background-color: white; /* Fondo blanco */
     cursor: pointer; /* Cambiar cursor a puntero */
     width: 100%; /* Ancho completo */
     box-sizing: border-box; /* Incluir padding y border en el ancho total */
     color: black;
-    border-left: none; /* Quita el borde izquierdo */
-    border-right: none; /* Quita el borde derecho */
+    border: none;
 }
