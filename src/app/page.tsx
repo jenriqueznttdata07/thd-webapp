@@ -14,10 +14,7 @@ const Home = () => {
                  {/* Contenedor Principal */}
       <div className="container">
 
-{/* Encabezado */}
-<div className="header text-center my-4">
-  <h2>NAVBAR</h2>
-</div>
+
 
 {/* Contenido Principal */}
 <div className="main-content">

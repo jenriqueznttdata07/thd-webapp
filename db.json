@@ -5,7 +5,10 @@
       "username": "g.mendoza@nttdata.com",
       "password": "Qwerty123",
       "isFirstTime": true,
-      "hasActiveQuickSignIn": false
+      "hasActiveQuickSignIn": false,
+      "name": "Gustavo Mendoza",
+      "lastName": "Mendoza",
+      "zipCode": "12345"
     }
   ],
   "auth-codes": [
