@@ -1,0 +1,26 @@
+.icon-color-thd {
+    fill: #fd7e14;
+    color: #fd7e14;
+}
+
+.logo-personal-account {
+    width: 3.5em;
+    height: 3.5em;
+}
+
+.logo-business-account {
+    width: 10em;
+    height: 3.5em;
+}
+
+.card-account-selected {
+    border: 1px solid black;
+}
+
+.icon-benefits-account {
+    margin: 1em;
+}
+
+.p-benefits-account {
+    display: inline-block;
+}
