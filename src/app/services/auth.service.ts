@@ -11,3 +11,14 @@ export const getAuth = async (user: User): Promise<User> => {
     const { id, email } = response.data[0];
     return { id, email };
 }
+
+export const isRegister = async (userEmail: String): Promise<boolean> => {
+    const response = await axios.get<null, AxiosResponse<User[]> | AxiosError<Error>>(`http://localhost:3000/users?username=${userEmail}`)
+    console.log('getAuth-response', response);
+
+    if(isAxiosError(response) || response.status !== 200) {
+        throw response;
+    };
+
+    return response.data.length > 0 ? true : false;
+}
