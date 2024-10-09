@@ -4,7 +4,13 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import "@/styles/Navbar.css";
 import "@/styles/Footer.css";
+import "@/styles/Carrousel.css"
+import React from "react";
+import Carrousel from "@/components/Carrousel";
+import { EmblaOptionsType } from 'embla-carousel';
 
+const OPTIONS: EmblaOptionsType = { loop: true }
+const SLIDE_COUNT = 4
 
 const Home = () => {
     return (
@@ -21,11 +27,7 @@ const Home = () => {
 
   {/* Sección 1 */}
   <div className="row justify-content-center">
-    <div className="col-12 col-md-8 mb-4">
-      <div className="banner p-4 border bg-light rounded">
-        <h2 className="text-center">SLIDER</h2>
-      </div>
-    </div>
+    <Carrousel slides={SLIDE_COUNT} options={OPTIONS} />
   </div>
 
   {/* Sección 2 */}
