@@ -80,12 +80,12 @@ const CustomNavbar: React.FC = () => {
             </Nav.Link>
 
             <Nav.Link href="#">
-              <div className="icon-container">
+              <div className="icon-container"
+               onClick={() => handleButtonClick('Sign In or Create an Account', <Sig />)} >
                 <img 
                   src="/images/me.png" 
                   alt="Account Icon" 
                   className="nav-icon" 
-                  onClick={() => handleButtonClick('Sign In or Create an Account', <Sig />)} 
                 />
                 <span className="icon-text">Me</span>
               </div>
