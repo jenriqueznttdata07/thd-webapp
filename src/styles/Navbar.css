@@ -6,6 +6,8 @@
   display: flex; /* Usar flexbox para alinear elementos */
   justify-content: center; /* Centrar contenido horizontalmente */
   align-items: center; /* Centrar contenido verticalmente */
+  z-index: 2050;
+
 }
 
 /* Estilo del texto en la línea superior */
@@ -14,6 +16,8 @@
   margin: 0; /* Eliminar margen para centrar adecuadamente */
   padding: 5px 0; /* Espaciado opcional */
   font-weight: bold; /* Hacer el texto en negrita */
+  z-index: 2050;
+
 }
 
 /* Logo de Home Depot */
@@ -29,6 +33,8 @@
   border-bottom: 1px solid #ddd; /* Línea de separación inferior */
   display: flex; /* Usar flexbox para alinear elementos */
   align-items: center; /* Centrar elementos verticalmente */
+  z-index: 2050;
+
 }
 
 /* Barra de búsqueda */

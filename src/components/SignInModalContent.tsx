@@ -8,15 +8,13 @@ import  products from '../icons/products.png';
 import  profile from '../icons/profile.png';
 import  track from '../icons/track.png';
 import { useRouter } from "next/navigation";
+import '../styles/AdaptiveModal.css';
 
-//import { useNavigate } from 'react-router-dom';
+
 
 const ModalContent: React.FC = () => {
 
     const router = useRouter();
-
-
-    //const navigate = useNavigate(); // Hook para la navegación
 
     const items = [
         { text: 'Track Order', icon: track  },
@@ -52,6 +50,7 @@ const ModalContent: React.FC = () => {
                     className="button-list"
                 >
                     <div className="icon-container">
+                    <img src={pro.src} alt={'Pro icon'} className='icon-image'/>
                     </div>
                     <span className="sui-font-regular sui-text-base sui-tracking-normal sui-normal-case sui-line-clamp-unset sui-text-primary">
                         Are You a Pro?
@@ -66,7 +65,7 @@ const ModalContent: React.FC = () => {
                         className="button-list"
                     >
                         <div className="icon-container">
-                            {}
+                           <img src={item.icon.src} alt={item.text} className='icon-image'/>
                         </div>
                         <span className="sui-font-regular sui-text-base sui-tracking-normal sui-normal-case sui-line-clamp-unset sui-text-primary">
                             {item.text}

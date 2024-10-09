@@ -1,32 +1,40 @@
-import React from 'react';
-import { Modal } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, {useEffect} from 'react';
 import '../styles/AdaptiveModal.css';
 
-interface MyModalProps {
+interface MySidebarProps {
   title: string;
   children: React.ReactNode;
-  show: boolean; // Prop para controlar la visibilidad
-  onHide: () => void; // Prop para manejar el cierre
-  side?: 'left' | 'right'; // Prop para especificar el lado
-
+  show: boolean;
+  onHide: () => void;
+  side?: 'left' | 'right';
 }
 
-const MyModal: React.FC<MyModalProps> = ({ title, children, show, onHide, side}) => {
-    
+const MySidebar: React.FC<MySidebarProps> = ({ title, children, show, onHide, side }) => {
+  useEffect(() => {
+    if (show) {
+      document.body.classList.add('modal-open'); // Agregar clase para bloquear scroll
+    } else {
+      document.body.classList.remove('modal-open'); // Quitar clase para permitir scroll
+    }
+
+    return () => {
+      document.body.classList.remove('modal-open'); // Limpiar clase al desmontar
+    };
+  }, [show]);
   return (
     <>
-    {show && <div className="backdrop-custom" onClick={onHide} />} {/* Backdrop personalizado */}
-    <Modal show={show} onHide={onHide} className={`custom-modal ${side}`} backdrop="static" keyboard={false}>
-      <Modal.Header closeButton className="modal-header-fixed">
-      <Modal.Title className="modal-title-custom">{title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {children}
-      </Modal.Body>
-    </Modal>
-   </>
+      {show && <div className="backdrop-custom" onClick={onHide} />}
+      <div className={`sidebar ${side} ${show ? 'show' : ''}`}>
+        <div className="sidebar-header">
+          <h5 className="modal-title-custom">{title}</h5>
+          <button className="close" onClick={onHide}>&times;</button>
+        </div>
+        <div className="sidebar-body">
+          {children}
+        </div>
+      </div>
+    </>
   );
 };
-    
-export default MyModal;
+
+export default MySidebar;

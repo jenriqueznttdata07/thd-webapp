@@ -1,69 +1,61 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { getAuth } from "@/app/services/auth.service";
 import { useAppDispatch } from "@/app/store";
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from "next/navigation";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import './page.css';
 
-
-interface OtraPaginaProps {
+interface PasswordPageProps {
   emailFromPreviousPage: string; // Prop para recibir el email
 }
 
-interface User {
-    email: string;
-    password: string;
-}
-
-const PasswordPage: React.FC<OtraPaginaProps> = () => {
+const PasswordPage: React.FC<PasswordPageProps> = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const emailFromPreviousPage = searchParams.get('email');
 
-  const [email, setEmail] = useState(emailFromPreviousPage);
-  const [isValid, setIsValid] = useState(false);
-  const [values, setValues] = useState<User>({ email: '', password: '' });
-  
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (emailFromPreviousPage) {
-      setValues({ ...values, email: emailFromPreviousPage });
-    }
-  }, [emailFromPreviousPage]);
-
-  useEffect(() => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsValid(emailPattern.test(emailFromPreviousPage!));
-  }, [emailFromPreviousPage]);
-
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setValues({ ...values, [name]: value });
+  const initialValues = {
+    email: emailFromPreviousPage,
+    password: ''
   };
 
-  const handleContinueClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email('Invalid email format')
+      .required('Email is required'),
+    password: Yup.string()
+      .required('Password is required') // Eliminar nonNullable, ya que .required() ya lo maneja
+  });
+
+  const handleSubmit = async (values: { email: string; password: string }) => {
     try {
-      //const response = await getAuth(values);
-      //const id = response.id ? response.id : '';
+      const response = await getAuth(values);
+      const id = response.id ? response.id : '';
       router.push('/');
     } catch (err) {
       console.error(err);
-    }  };
+    }
+  };
 
   const handleBackClick = () => {
     window.history.back();
   };
 
-  const handleAnotherActionClick=  () => {
+  const handleAnotherActionClick = () => {
     window.history.back();
-
   };
+
+  // Estado para manejar la validez del formulario
+  const [isValid, setIsValid] = useState(false);
 
   return (
     <div className="flex-container">
-      <button type="button" className="logo-button" onClick={handleContinueClick}>
+      <button type="button" className="logo-button" onClick={handleAnotherActionClick}>
         <img
           src="https://mma.prnewswire.com/media/118058/the_home_depot_logo.jpg?p=facebook"
           alt="Home Depot Logo"
@@ -73,7 +65,7 @@ const PasswordPage: React.FC<OtraPaginaProps> = () => {
       <div className="header-container">
         <p className="header-text">Enter your Password:</p>
         <p className="header-text">Email:</p>
-        <p className="header-email">{email}</p>
+        <p className="header-email">{emailFromPreviousPage}</p>
       </div>
       <div className="back-button-container">
         <button type="button" onClick={handleBackClick} className="back-button">
@@ -87,47 +79,49 @@ const PasswordPage: React.FC<OtraPaginaProps> = () => {
           </span>
         </button>
       </div>
-      <form className="email-form">
-        <div className="input-group">
-          <label htmlFor="password" className="input-label">Enter Your Password</label>
-          <div className="input-container">
-            <input
-              id="password"
-              type="password"
-              autoComplete="on"
-              value={values.password}
-              onChange={handleEmailChange}
-              name="password" // Asegúrate de que el name sea "password"
-              aria-describedby="username-status-message"
-              className="email-input"
-            />
-            <span className={isValid ? "icon-success" : "icon-error"}>
-              <svg className="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d={isValid ? "" : "https://static.vecteezy.com/system/resources/previews/000/378/717/non_2x/svg-vector-icon.jpg"} />
-              </svg>
-            </span>
-          </div>
-          <p className="error-message" id="username-status-message">
-            {isValid ? '' : 'Enter your password.'}
-          </p>
-        </div>
-        <button
-          type="button"
-          disabled={!isValid}
-          className="continue-button"
-          onClick={handleContinueClick}
-        >
-          Continue
-        </button>
-        <button
-          type="button"
-          className="continue-button"
-          onClick={handleAnotherActionClick}
-        >
-          Cancel
-        </button>
-      </form>
-
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+        validateOnChange={true} // Permitir validación en cambios
+        validate={(values) => {
+          // Actualiza el estado de validez basado en el campo de contraseña
+          const isValid = validationSchema.isValidSync(values);
+          setIsValid(isValid);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form className="email-form">
+            <div className="input-group">
+              <label htmlFor="password" className="input-label">Enter Your Password</label>
+              <div className="input-container">
+                <Field
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="on"
+                  className="email-input"
+                />
+                <ErrorMessage name="password" component="div" className="error-message" />
+              </div>
+            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting || !isValid} // Deshabilitar si está enviando o no es válido
+              className="continue-button"
+            >
+              Continue
+            </button>
+            <button
+              type="button"
+              className="continue-button"
+              onClick={handleAnotherActionClick}
+            >
+              Cancel
+            </button>
+          </Form>
+        )}
+      </Formik>
       <div className="terms-container">
         By selecting 'Sign In' you are agreeing to the
         <a href="https://www.homedepot.com/c/ProXtra_TermsandConditions#membership" className="terms-link" target="_blank" rel="noopener noreferrer">Pro Xtra Terms and Conditions</a>,
