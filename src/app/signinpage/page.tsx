@@ -35,9 +35,9 @@ const Page: React.FC = () => {
     window.history.back();
   };
 
-  // Estado para manejar la validez del formulario
-  const [isValid, setIsValid] = useState(false);
-  const [showModal, setShowModal] = useState(false); // Estado para controlar el modal
+  const [isValidForm, setIsValid] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);  
 
   return (
     <div className="flex-container">
@@ -94,7 +94,7 @@ const Page: React.FC = () => {
             </div>
             <button
               type="submit"
-              disabled={isSubmitting || !isValid} // Deshabilitar si está enviando o no es válido
+              disabled={isSubmitting || !isValidForm} 
               className="continue-button"
             >
               Continue

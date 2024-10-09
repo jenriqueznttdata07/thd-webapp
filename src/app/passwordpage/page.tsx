@@ -29,7 +29,7 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
       .email('Invalid email format')
       .required('Email is required'),
     password: Yup.string()
-      .required('Password is required') // Eliminar nonNullable, ya que .required() ya lo maneja
+      .required('Password is required') 
   });
 
   const handleSubmit = async (values: { email: string; password: string }) => {
@@ -50,8 +50,7 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
     window.history.back();
   };
 
-  // Estado para manejar la validez del formulario
-  const [isValid, setIsValid] = useState(false);
+  const [isValidForm, setIsValid] = useState(false);
 
   return (
     <div className="flex-container">
@@ -83,9 +82,8 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
-        validateOnChange={true} // Permitir validación en cambios
+        validateOnChange={true} 
         validate={(values) => {
-          // Actualiza el estado de validez basado en el campo de contraseña
           const isValid = validationSchema.isValidSync(values);
           setIsValid(isValid);
         }}
@@ -107,7 +105,7 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
             </div>
             <button
               type="submit"
-              disabled={isSubmitting || !isValid} // Deshabilitar si está enviando o no es válido
+              disabled={isSubmitting || !isValidForm} 
               className="continue-button"
             >
               Continue

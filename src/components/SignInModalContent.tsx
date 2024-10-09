@@ -44,7 +44,7 @@ const ModalContent: React.FC = () => {
             router.push('/product-list');
             break;
           default:
-            router.push('/defaultpage'); // Ruta por defecto si no coincide con ninguno
+            router.push('/defaultpage'); 
         }
       };
 
@@ -85,7 +85,7 @@ const ModalContent: React.FC = () => {
         <div className='button-list:hover'>
         <button
           key={index}
-          onClick={() => handleNavigation(item.text)}  // Llama la función handleNavigation
+          onClick={() => handleNavigation(item.text)}  
           className="button-list"
         >
           <div className="icon-container">
