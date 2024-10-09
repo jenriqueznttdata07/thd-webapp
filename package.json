@@ -20,6 +20,8 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "embla-carousel-autoplay": "^8.3.0",
+    "embla-carousel-react": "^8.3.0",
     "formik": "^2.4.6",
     "json-server": "^1.0.0-beta.3",
     "lodash": "^4.17.21",
