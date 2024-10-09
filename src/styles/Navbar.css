@@ -49,14 +49,22 @@
   width: 300px; /* Ajustar el tamaño de la barra de búsqueda */
   max-width: 100%; /* Asegurar que no exceda el contenedor */
   background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 5px; /* Espaciado interno del input */
+  border-radius: 4px; /* Bordes redondeados */
 }
 
-/* Botón de búsqueda */
 .search-button {
   background-color: #f96302; /* Color de fondo del botón */
   border: none;
   color: white; /* Color del texto */
   padding: 0.5rem 1rem; /* Ajustar el espaciado */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+}
+
+.search-button:hover {
+  background-color: #e55300; /* Cambiar color al pasar el ratón */
 }
 
 /* Sección de íconos */
@@ -70,7 +78,9 @@
   display: flex; /* Usar flexbox para alinear el ícono y el texto */
   flex-direction: column; /* Colocar el ícono encima del texto */
   align-items: center; /* Centrar elementos horizontalmente */
-  margin: 0 10px; /* Espaciado entre íconos */
+  justify-content: center; /* Centrar elementos verticalmente */
+  margin: 5px 20px; /* Espaciado entre íconos */
+  white-space: nowrap;
 }
 
 /* Íconos de navegación */
@@ -79,13 +89,30 @@
   height: auto; /* Mantener relación de aspecto */
 }
 
-/* Estilo para el texto de los íconos */
+/* Estilo del texto debajo de cada ícono */
 .icon-text {
-  font-size: 12px; /* Tamaño de la fuente (ajusta según necesites) */
-  font-weight: bold; /* Estilo de fuente en negrita */
-  color: #000; /* Color del texto */
-  margin-top: 4px; /* Espaciado entre ícono y texto */
+  font-size: 14px; /* Tamaño del texto */
+  font-weight: bold; /* Negrita para el texto */
+  color: #000; /* Color del texto (negro) */
+  margin: 5px 0 0 0; /* Espaciado superior al texto */
   text-align: center; /* Centrar el texto debajo del ícono */
+  line-height: 1; /* Alinear correctamente el texto y el ícono */
+}
+
+/* Alineación de los elementos de la barra de navegación */
+.hd-navbar .nav-link {
+  display: flex; /* Usar flexbox para alinear íconos y texto */
+  flex-direction: column; /* Colocar el ícono encima del texto */
+  align-items: center; /* Centrar íconos y texto verticalmente */
+  justify-content: center; /* Centrar contenido */
+  color: #000; /* Color del texto de los enlaces */
+  padding: 5px; /* Ajustar el espaciado interno */
+  margin: 0 10px; /* Ajustar margen entre los enlaces */
+  text-decoration: none; /* Eliminar subrayado de los enlaces */
+}
+
+.hd-navbar .nav-link:hover {
+  color: #f96302; /* Cambiar color de los enlaces al pasar el ratón */
 }
 
 /* Estilo para el texto "10PM" */
@@ -94,17 +121,5 @@
   font-weight: bold; /* Estilo de fuente en negrita */
   color: #000; /* Color del texto (puedes cambiarlo a blanco si lo prefieres) */
   margin: 0 10px; /* Espaciado a los lados del texto */
-}
-
-/* Alineación de los elementos de la barra de navegación */
-.hd-navbar .nav-link {
-  display: flex; /* Usar flexbox para alinear iconos y texto */
-  align-items: center; /* Centrar íconos y texto verticalmente */
-  color: #000; /* Color del texto de los enlaces */
-  padding: 0 10px; /* Espaciado interno de los enlaces */
-  margin: 0 10px; /* Ajustar margen entre los enlaces */
-}
-
-.hd-navbar .nav-link:hover {
-  color: #f96302; /* Color de los enlaces al pasar el ratón */
+  text-align: center; /* Centrar el texto debajo del ícono */
 }

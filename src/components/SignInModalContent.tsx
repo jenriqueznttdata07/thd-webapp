@@ -26,6 +26,28 @@ const ModalContent: React.FC = () => {
 
     ];
 
+    const handleNavigation = (text: string) => {
+        switch (text) {
+          case 'Track Order':
+            router.push('/track-order');
+            break;
+          case 'Pay Credit Card Bill':
+            router.push('/pay-credit-card');
+            break;
+          case 'Military Discount Benefit':
+            router.push('/military-discount-benefit');
+            break;
+          case 'Profile':
+            router.push('/profile');
+            break;
+          case 'Product List':
+            router.push('/product-list');
+            break;
+          default:
+            router.push('/defaultpage'); // Ruta por defecto si no coincide con ninguno
+        }
+      };
+
     return (
         <>
             <ButtonGroup className="button-group-container mb-3">
@@ -58,21 +80,21 @@ const ModalContent: React.FC = () => {
                 </button>
             </div>
             <div>
-                {items.map((item, index) => (
-                    <button
-                        key={index}
-                        onClick={() => alert(`Seleccionaste: ${item.text}`)}
-                        className="button-list"
-                    >
-                        <div className="icon-container">
-                           <img src={item.icon.src} alt={item.text} className='icon-image'/>
-                        </div>
-                        <span className="sui-font-regular sui-text-base sui-tracking-normal sui-normal-case sui-line-clamp-unset sui-text-primary">
-                            {item.text}
-                        </span>
-                    </button>
-                ))}
-            </div>
+      {items.map((item, index) => (
+        <button
+          key={index}
+          onClick={() => handleNavigation(item.text)}  // Llama la función handleNavigation
+          className="button-list"
+        >
+          <div className="icon-container">
+            {/* Aquí podrías colocar un ícono si tienes alguno */}
+          </div>
+          <span className="sui-font-regular sui-text-base sui-tracking-normal sui-normal-case sui-line-clamp-unset sui-text-primary">
+            {item.text}
+          </span>
+        </button>
+      ))}
+    </div>
         </>
     );
 };
