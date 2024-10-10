@@ -25,9 +25,9 @@ const Page: React.FC = () => {
     const isRegistered = await isRegister(values.email);
     
     if (isRegistered) {
-      setShowModal(true); 
+        router.push(`/passwordpage?email=${encodeURIComponent(values.email)}`);
     } else {
-      router.push(`/passwordpage?email=${encodeURIComponent(values.email)}`);
+        router.push(`/create-account?email=${encodeURIComponent(values.email)}`);
     }
   };
 
@@ -71,7 +71,7 @@ const Page: React.FC = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
-        validateOnChange={true} // Permitir validación en cambios
+        validateOnChange={true}
         validate={(values) => {
           const isValid = validationSchema.isValidSync(values);
           setIsValid(isValid);
@@ -110,8 +110,7 @@ const Page: React.FC = () => {
         <a href="https://www.homedepot.com/c/PH_MyAccount" className="terms-link" target="_blank" rel="noopener noreferrer">My Account Terms and Conditions</a>.
         For Two-Factor Authentication, message and data rates may apply.
       </div>
-
-      {/* Modal */}
+      
       <SideModal show={showModal} onClose={() => setShowModal(false)} />
     </div>
   );

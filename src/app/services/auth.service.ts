@@ -20,5 +20,5 @@ export const isRegister = async (userEmail: String): Promise<boolean> => {
         throw response;
     };
 
-    return response.data.length > 0 ? true : false;
+    return response.data.length > 0;
 }
