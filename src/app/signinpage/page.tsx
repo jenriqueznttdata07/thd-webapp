@@ -26,9 +26,9 @@ const Page: React.FC = () => {
     setemail(values.email);
 
     if (isRegistered) {
-      setShowModal(true); 
+        router.push(`/passwordpage?email=${encodeURIComponent(values.email)}`);
     } else {
-      router.push(`/passwordpage?email=${encodeURIComponent(values.email)}`);
+        router.push(`/create-account?email=${encodeURIComponent(values.email)}`);
     }
   };
 
@@ -40,7 +40,7 @@ const Page: React.FC = () => {
 
   const [showModal, setShowModal] = useState(false);  
 
-  const [emailx, setemail] = useState('');  
+  const [email, setemail] = useState('');  
 
 
   return (
@@ -75,7 +75,7 @@ const Page: React.FC = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
-        validateOnChange={true} // Permitir validación en cambios
+        validateOnChange={true}
         validate={(values) => {
           const isValid = validationSchema.isValidSync(values);
           setIsValid(isValid);
@@ -116,7 +116,7 @@ const Page: React.FC = () => {
       </div>
 
       {/* Modal */}
-      <SideModal show={showModal} onClose={() => setShowModal(false)} email= {emailx} />
+      <SideModal show={showModal} onClose={() => setShowModal(false)} email= {email} />
     </div>
   );
 };

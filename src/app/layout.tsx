@@ -1,5 +1,6 @@
 'use client'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import "@/styles/Footer.css";
 import ReduxProvider from './store/ReduxProvider';
 

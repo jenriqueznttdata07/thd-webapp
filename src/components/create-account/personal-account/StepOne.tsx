@@ -1,21 +1,35 @@
 import { ACCOUNT_TYPES } from "@/app/data/account-types";
 import CardAccountType from "../CardAccountType";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { AccountType } from "@/domain/models/AccountType";
 import AccountBenefit from "../AccountBenefit";
 import { cloneDeep } from 'lodash';
+import * as AccountTypesService from "../../../app/services/account-types.service";
 
-const StepOne: React.FC = () => {
+interface StepOneProps {
+    setIsStepOneCompleted: Dispatch<SetStateAction<boolean>>;
+}
 
+const StepOne: React.FC<StepOneProps> = ({ setIsStepOneCompleted }) => {
+    
+    const [accountTypes, setAccountTypes] = useState<AccountType[]>([]);
     const [accountTypeSelected, setAccountTypeSelected] = useState<AccountType | null>(null);
+
+    useEffect(() => {
+        const getData = async () => {
+            const accountTypesData = await AccountTypesService.getAccountTypes();
+            setAccountTypes(accountTypesData);
+        }
+        getData();
+    },[accountTypes])
 
     const handleClickAccountType = (accountType: AccountType) => {
         const newAccountTypeSelected = cloneDeep(accountType);
         setAccountTypeSelected(newAccountTypeSelected);
+        setIsStepOneCompleted(true);
     }
 
-    console.log('NEW -accountTypeSelected', accountTypeSelected);
-    const cardAccountTypeView = ACCOUNT_TYPES.map((accountType) => (
+    const cardAccountTypeView = accountTypes.map((accountType) => (
         <CardAccountType
             key={accountType.id}
             accountType={accountType} 
