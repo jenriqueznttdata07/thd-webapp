@@ -8,15 +8,13 @@ import  products from '../icons/products.png';
 import  profile from '../icons/profile.png';
 import  track from '../icons/track.png';
 import { useRouter } from "next/navigation";
+import '../styles/AdaptiveModal.css';
 
-//import { useNavigate } from 'react-router-dom';
+
 
 const ModalContent: React.FC = () => {
 
     const router = useRouter();
-
-
-    //const navigate = useNavigate(); // Hook para la navegación
 
     const items = [
         { text: 'Track Order', icon: track  },
@@ -46,7 +44,7 @@ const ModalContent: React.FC = () => {
             router.push('/product-list');
             break;
           default:
-            router.push('/defaultpage'); // Ruta por defecto si no coincide con ninguno
+            router.push('/defaultpage'); 
         }
       };
 
@@ -74,28 +72,34 @@ const ModalContent: React.FC = () => {
                     className="button-list"
                 >
                     <div className="icon-container">
+                    <img src={pro.src} alt={'Pro icon'} className='icon-image'/>
                     </div>
                     <span className="sui-font-regular sui-text-base sui-tracking-normal sui-normal-case sui-line-clamp-unset sui-text-primary">
                         Are You a Pro?
                         Get online tools to manage and grow your business – plus, Pro Xtra Members unlock more benefits and savings. Learn More          </span>
                 </button>
+                <div className="divider" />
             </div>
             <div>
       {items.map((item, index) => (
+        <div className='button-list:hover'>
         <button
           key={index}
-          onClick={() => handleNavigation(item.text)}  // Llama la función handleNavigation
+          onClick={() => handleNavigation(item.text)}  
           className="button-list"
         >
           <div className="icon-container">
-            {/* Aquí podrías colocar un ícono si tienes alguno */}
+          <img src={item.icon.src} alt={item.icon.src} className='icon-image'/>
           </div>
           <span className="sui-font-regular sui-text-base sui-tracking-normal sui-normal-case sui-line-clamp-unset sui-text-primary">
             {item.text}
           </span>
         </button>
+        <div className="divider" />
+        </div>
       ))}
     </div>
+
         </>
     );
 };

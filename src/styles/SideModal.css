@@ -1,0 +1,94 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+  }
+  
+  .side-modal {
+    position: fixed;
+    top: 0;
+    right: -500px; /* Oculto inicialmente */
+    width: 500px;
+    height: 100%; /* Ajustar a contenido */
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease;
+    z-index: 200;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Organizar elementos verticalmente */
+    justify-content: center; /* Centrar contenido verticalmente */
+    
+  }
+  
+  .side-modal.show {
+    right: 0; /* Deslizar a la vista */
+  }
+  
+  .modal-header {
+    margin-bottom: 20px;
+    margin-left: 25%;
+    font-weight: bold;
+    font-size: larger;
+    text-align: center; /* Centrar texto del encabezado */
+  }
+  
+  .icon-container {
+    display: flex;
+    justify-content: space-around; /* Espacio uniforme entre iconos */
+    margin-bottom: 20px;
+  }
+  
+  .orange-button {
+    background-color: #FF6100;
+    color: white;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 25px;
+    cursor: pointer;
+    font-weight: 650;
+    font-size: small;
+  }
+  
+  .orange-button2 {
+    background-color: #d7cdc6;
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 100%;
+    margin-bottom: 25px;
+    cursor: pointer;
+
+  }
+  
+  .orange-button:hover {
+    background-color: black;
+  }
+  
+  .divider {
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+  }
+  
+  .link {
+    color: #083058;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center; /* Centrar texto del enlace */
+  }
+
+  .link2 {
+    margin-top: 30px;
+    color: #05090d;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center; /* Centrar texto del enlace */
+  }
