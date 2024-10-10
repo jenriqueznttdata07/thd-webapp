@@ -1,8 +1,9 @@
 import { AccountType } from "@/domain/models/AccountType";
-import axios, { AxiosError, AxiosResponse, isAxiosError } from "axios";
+import AxiosIntance from "@/utils/axios-intance";
+import { AxiosError, AxiosResponse, isAxiosError } from "axios";
 
 export const getAccountTypes = async (): Promise<AccountType[]> => {
-    const response = await axios.get<null, AxiosResponse<AccountType[]> | AxiosError<Error>>(`http://localhost:3000/account-types`)
+    const response = await AxiosIntance.get<null, AxiosResponse<AccountType[]> | AxiosError<Error>>(`account-types`)
     if(isAxiosError(response) || response.status !== 200) {
         throw response;
     };

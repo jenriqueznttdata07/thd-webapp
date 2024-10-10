@@ -1,10 +1,9 @@
-import { ACCOUNT_TYPES } from "@/app/data/account-types";
 import CardAccountType from "../CardAccountType";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { AccountType } from "@/domain/models/AccountType";
 import AccountBenefit from "../AccountBenefit";
 import { cloneDeep } from 'lodash';
-import * as AccountTypesService from "../../../app/services/account-types.service";
+import * as AccountTypesService from "../../../services/account-types.service";
 
 interface StepOneProps {
     setIsStepOneCompleted: Dispatch<SetStateAction<boolean>>;
