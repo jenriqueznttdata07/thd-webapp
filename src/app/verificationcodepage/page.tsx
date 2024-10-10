@@ -1,34 +1,48 @@
 'use client';
 import React, { useState } from 'react';
-import './page.css';
+import { getAuthByCode } from "@/app/services/auth.service";
+import { useAppDispatch } from "@/app/store";
+import { useSearchParams } from 'next/navigation';
 import { useRouter } from "next/navigation";
-import { isRegister } from "@/app/services/auth.service";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import SideModal from '@/components/SideModal'; 
+import './page.css';
 
-const Page: React.FC = () => {
+
+interface CodePageProps {
+  emailFromPreviousPage: string; 
+}
+
+const VerificationCodePage: React.FC<CodePageProps> = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const emailFromPreviousPage = searchParams.get('email');
+
+  const dispatch = useAppDispatch();
 
   const initialValues = {
-    email: ''
+    email: emailFromPreviousPage || '',
+    code: ''
   };
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email('Please provide a valid email address.')
-      .required('Email is required')
+      .email('Invalid email format')
+      .required('Email is required'),
+    code: Yup.string()
+      .required('code is required') 
   });
 
- 
-  const handleSubmit = async (values: { email: string }) => {
-    const isRegistered = await isRegister(values.email);
-    setemail(values.email);
-
-    if (isRegistered) {
-      setShowModal(true); 
-    } else {
-      router.push(`/passwordpage?email=${encodeURIComponent(values.email)}`);
+  const handleSubmit = async (values: { email: string; code: string }) => {
+    try {
+      const ist = await getAuthByCode(values.code);
+     if(ist){
+      router.push('/');
+     }else{
+       alert('the code is incorrect');
+     }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -36,16 +50,16 @@ const Page: React.FC = () => {
     window.history.back();
   };
 
+  const handleAnotherActionClick = () => {
+    window.history.back();
+  };
+
+
   const [isValidForm, setIsValid] = useState(false);
-
-  const [showModal, setShowModal] = useState(false);  
-
-  const [emailx, setemail] = useState('');  
-
 
   return (
     <div className="flex-container">
-      <button type="button" className="logo-button" onClick={handleBackClick}>
+      <button type="button" className="logo-button" onClick={handleAnotherActionClick}>
         <img
           src="https://mma.prnewswire.com/media/118058/the_home_depot_logo.jpg?p=facebook"
           alt="Home Depot Logo"
@@ -53,14 +67,12 @@ const Page: React.FC = () => {
         />
       </button>
       <div className="header-container">
-        <p className="header-text">Enter Your Email Address</p>
+        <p className="header-text">Enter your Verification code:</p>
+        <p className="header-text">Email:</p>
+        <p className="header-email">{emailFromPreviousPage}</p>
       </div>
       <div className="back-button-container">
-        <button 
-          type="button"
-          onClick={handleBackClick}
-          className="back-button"
-        >
+        <button type="button" onClick={handleBackClick} className="back-button">
           <span className="back-button-content">
             <img
               src="https://www.svgrepo.com/show/305142/arrow-ios-back.svg"
@@ -75,7 +87,7 @@ const Page: React.FC = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
-        validateOnChange={true} // Permitir validación en cambios
+        validateOnChange={true} 
         validate={(values) => {
           const isValid = validationSchema.isValidSync(values);
           setIsValid(isValid);
@@ -84,16 +96,15 @@ const Page: React.FC = () => {
         {({ isSubmitting }) => (
           <Form className="email-form">
             <div className="input-group">
-              <label htmlFor="email" className="input-label">Email Address</label>
+              <label htmlFor="code" className="input-label">Verification code entry</label>
               <div className="input-container">
                 <Field
-                  id="email"
-                  name="email"
-                  type="email"
+                  id="code"
+                  name="code"
                   autoComplete="on"
                   className="email-input"
                 />
-                <ErrorMessage name="email" component="div" className="error-message" />
+                <ErrorMessage name="code" component="div" className="error-message" />
               </div>
             </div>
             <button
@@ -102,6 +113,13 @@ const Page: React.FC = () => {
               className="continue-button"
             >
               Continue
+            </button>
+            <button
+              type="button"
+              className="continue-button"
+              onClick={handleAnotherActionClick}
+            >
+              Cancel
             </button>
           </Form>
         )}
@@ -114,11 +132,8 @@ const Page: React.FC = () => {
         <a href="https://www.homedepot.com/c/PH_MyAccount" className="terms-link" target="_blank" rel="noopener noreferrer">My Account Terms and Conditions</a>.
         For Two-Factor Authentication, message and data rates may apply.
       </div>
-
-      {/* Modal */}
-      <SideModal show={showModal} onClose={() => setShowModal(false)} email= {emailx} />
     </div>
   );
 };
 
-export default Page;
+export default VerificationCodePage;

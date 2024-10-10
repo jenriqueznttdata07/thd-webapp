@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import MySidebar from '@/components/AdaptiveModal'; // Asegúrate de que el nombre del archivo sea correcto
+import MySidebar from '@/components/AdaptiveModal'; 
 import Sig from '@/components/SignInModalContent';
 import { Container, Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+
+
 
 const CustomNavbar: React.FC = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [sidebarTitle, setSidebarTitle] = useState('');
   const [sidebarContent, setSidebarContent] = useState<React.ReactNode>(null);
+
 
   const handleShow = () => setShowSidebar(true);
   const handleClose = () => setShowSidebar(false);
