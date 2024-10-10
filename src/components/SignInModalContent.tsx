@@ -61,7 +61,7 @@ const ModalContent: React.FC = () => {
                 <Button
                     className="custom-button-2"
                     variant="light"
-                    onClick={() => alert('Botón 2 clicado')}
+                    onClick={() => router.push('/signinpage')}
                 >
                     Register
                 </Button>
