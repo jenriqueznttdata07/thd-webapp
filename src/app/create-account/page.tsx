@@ -3,6 +3,7 @@ import PhoneInput from "@/components/PhoneInput";
 import StepOne from "@/components/create-account/personal-account/StepOne";
 import StepTwo from "@/components/create-account/personal-account/StepTwo";
 import "@/styles/CreateAccount.css";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const CreateAccountPage: React.FC = () => {
@@ -11,6 +12,10 @@ const CreateAccountPage: React.FC = () => {
     const [isStepTwoCompleted, setIsStepTwoCompleted] = useState<boolean>(false);
     const [isStepThreeCompleted, setIsStepThreeCompleted] = useState<boolean>(false);
     const [phone, setPhone] = useState<string | number | readonly string[] | undefined>('');
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const emailFromPreviousPage = searchParams.get('email') || '';
+    
 
     const handlePhoneInput = (value: string) => {
         console.log('value', value);
@@ -25,6 +30,10 @@ const CreateAccountPage: React.FC = () => {
             ? " btn-success"
             : "";
         return baseStyle;
+    }
+    
+    const handleCreateBusinessAccount = () => {
+        router.replace(`/create-business-account?email=${encodeURIComponent(emailFromPreviousPage)}`)
     }
 
     return (
@@ -62,6 +71,9 @@ const CreateAccountPage: React.FC = () => {
                         onChange={handlePhoneInput}
                         />
                 </div>
+            </div>
+            <div className="row justify-content-center m-3">
+                <button className="btn btn-warning col-12" onClick={handleCreateBusinessAccount}>Continue</button>
             </div>
             <div className="terms-container">
                 By selecting 'Sign In' you are agreeing to the

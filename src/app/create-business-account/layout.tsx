@@ -14,11 +14,11 @@ const CreateBusinessAccountLayout: React.FC<CreateBusinessAccountLayoutProps> = 
     const emailFromPreviousPage = searchParams.get('email');
     
     const handleHomeClick = () => {
-        router.replace('/')
+        router.replace('/');
     };
     
     const handleBackClick = () => {
-        router.back()
+        router.replace(`/create-account?email=${emailFromPreviousPage}`);
     };
 
     return (
