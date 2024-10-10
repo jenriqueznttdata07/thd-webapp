@@ -1,4 +1,5 @@
 "use client"
+import PhoneInput from "@/components/PhoneInput";
 import StepOne from "@/components/create-account/personal-account/StepOne";
 import StepTwo from "@/components/create-account/personal-account/StepTwo";
 import "@/styles/CreateAccount.css";
@@ -7,6 +8,14 @@ import { useState } from "react";
 const CreateAccount: React.FC = () => {
 
     const [isStepOneCompleted, setIsStepOneCompleted] = useState<boolean>(false);
+    const [phone, setPhone] = useState<string | number | readonly string[] | undefined>('');
+
+    const handlePhoneInput = (value: string) => {
+        console.log('value', value);
+        setPhone(value);
+    }
+
+    console.log('phone', phone);
 
     return (
         <>
@@ -41,7 +50,7 @@ const CreateAccount: React.FC = () => {
                         </div>
                         <StepOne setIsStepOneCompleted={setIsStepOneCompleted}></StepOne>
                     </div>
-                    <div className="row">
+                    <div className="row mb-3">
                         <div className="row">
                             <p>
                                 <button>2</button>
@@ -58,9 +67,10 @@ const CreateAccount: React.FC = () => {
                                     My phone number will be
                                 </p>
                             </div>
-                            <div className="row">
-                                <input type="text" placeholder="Enter a phone number" />
-                            </div>
+                            <PhoneInput
+                                value={phone}
+                                onChange={handlePhoneInput}
+                                />
                         </div>
                     </div>
                     <div className="row">
