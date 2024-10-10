@@ -62,8 +62,8 @@
         "accountType": "Pro Xtra Account",
         "icons": [
             {
-                "image": "thd-myself.svg",
-                "name": "TheHomeDepotMySelf"
+                "image": "thd-pro-xtra.svg",
+                "name": "Pro Xtra Account"
             }
         ],
         "benefits": [

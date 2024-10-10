@@ -20,9 +20,10 @@ const InputPassword: React.FC = () => {
         hasOneNumber: false,
         hasOneSpecialChar: false
     });
-    const [strength, setStrength] = useState<string>('Poor');
+    const [strength, setStrength] = useState<string>('');
 
     const STRENGTH: { [name:string]: number } = {
+        Initial: 0,
         Poor: 25,
         Fair: 50,
         Good: 75,
@@ -100,7 +101,7 @@ const InputPassword: React.FC = () => {
 
 
     const calculateStrength = (params: ValidPassword) => {
-        let value = 'Poor';
+        let value = '';
         const { isLengthValid, ...threeOfFourRequirements } = params;
 
         const resultRequeriments = Object.values(threeOfFourRequirements).filter(req => req);
@@ -133,7 +134,6 @@ const InputPassword: React.FC = () => {
             ? <i className="bi bi-check text-success fs-3"></i>
             : <i className="bi bi-x text-secondary fs-3"></i>;
     }
-    
 
     return (
         <>
@@ -150,30 +150,36 @@ const InputPassword: React.FC = () => {
                         { passwordType ? "Show" : "Hide"}
                 </button>
             </div>
-            <p>Create a strong password</p>
-            <p className="fw-bold">Password must contain:</p>
-            <p>
-                {verifyRequirement(validPassword.isLengthValid)}
-                <span className="fs-6 text-body-secondary">9 characters minimum</span>
+            <p className="text-start">Create a strong password</p>
+            <p className="text-start fw-bold">Password must contain:</p>
+            <p className="text-start">
+                <span className="fs-6 text-body-secondary">
+                    {verifyRequirement(validPassword.isLengthValid)}
+                    9 characters minimum
+                </span>
             </p>
-            <p className="fw-bold">And 3 of the following</p>
-            <p>
-                {verifyRequirement(validPassword.hasOneUppercase)}
-                <span className="fs-6 text-body-secondary">Uppercase letter</span>
+            <p className="text-start fw-bold">And 3 of the following</p>
+            <p className="text-start">
+                <span className="fs-6 text-body-secondary m-2">
+                    {verifyRequirement(validPassword.hasOneUppercase)}
+                    Uppercase letter
+                </span>
+                <span className="fs-6 text-body-secondary m-2">
+                    {verifyRequirement(validPassword.hasOneNumber)}
+                    Number
+                </span>
             </p>
-            <p>
-                {verifyRequirement(validPassword.hasOneLowercase)}
-                <span className="fs-6 text-body-secondary">Lowercase letter</span>
+            <p className="text-start">
+                <span className="fs-6 text-body-secondary m-2">
+                    {verifyRequirement(validPassword.hasOneLowercase)}
+                    Lowercase letter
+                </span>
+                <span className="fs-6 text-body-secondary m-2">
+                    {verifyRequirement(validPassword.hasOneSpecialChar)}
+                    Special characters
+                </span>
             </p>
-            <p>
-                {verifyRequirement(validPassword.hasOneNumber)}
-                <span className="fs-6 text-body-secondary">Number</span>
-            </p>
-            <p>
-                {verifyRequirement(validPassword.hasOneSpecialChar)}
-                <span className="fs-6 text-body-secondary">Special characters</span>
-            </p>
-            <p className="fw-bold">Stregth: <span>{strength}</span></p>
+            <p className="fw-bold text-start">Stregth: <span>{strength}</span></p>
             <div>
                 <div className="progress">
                     <div 

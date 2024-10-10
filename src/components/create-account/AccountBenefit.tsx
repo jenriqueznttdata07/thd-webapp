@@ -9,12 +9,10 @@ const AccountBenefit: React.FC<AccountBenefitProps> = ({ benefit }) => {
 
     return (
         <>
-            <div className="row">
-                <p>
-                    <img className="icon-benefits-account" src={`/images/${icon.image}`} alt={icon.name} />
-                    <span>{name}</span>
-                </p>
-            </div>
+            <p className="text-start">
+                <img className="icon-benefits-account" src={`/images/${icon.image}`} alt={icon.name} />
+                <span>{name}</span>
+            </p>
         </>);
 }
 

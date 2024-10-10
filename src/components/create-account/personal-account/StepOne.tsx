@@ -32,19 +32,20 @@ const StepOne: React.FC<StepOneProps> = ({ setIsStepOneCompleted }) => {
         <CardAccountType
             key={accountType.id}
             accountType={accountType} 
-            handleClickAccountType={handleClickAccountType}>
+            handleClickAccountType={handleClickAccountType}
+            isSelected={accountTypeSelected?.id === accountType.id}>
         </CardAccountType>
     ));
 
     return (
         <>
-            <div className="row">
+            <div className="row justify-content-center">
                 {cardAccountTypeView}
-                <div className="row">
-                    {accountTypeSelected 
-                        && accountTypeSelected.benefits.map(benefit => (
-                        <AccountBenefit key={benefit.name} benefit={benefit}></AccountBenefit>))}
-                </div>
+            </div>
+            <div className="row justify-content-start">
+                {accountTypeSelected 
+                    && accountTypeSelected.benefits.map(benefit => (
+                    <AccountBenefit key={benefit.name} benefit={benefit}></AccountBenefit>))}
             </div>
         </>
     )
