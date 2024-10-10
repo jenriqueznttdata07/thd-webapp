@@ -5,7 +5,7 @@ import StepTwo from "@/components/create-account/personal-account/StepTwo";
 import "@/styles/CreateAccount.css";
 import { useState } from "react";
 
-const CreateAccount: React.FC = () => {
+const CreateAccountPage: React.FC = () => {
 
     const [isStepOneCompleted, setIsStepOneCompleted] = useState<boolean>(false);
     const [isStepTwoCompleted, setIsStepTwoCompleted] = useState<boolean>(false);
@@ -72,7 +72,7 @@ const CreateAccount: React.FC = () => {
                 For Two-Factor Authentication, message and data rates may apply.
             </div>
         </>
-    )
-}
+    );
+};
 
-export default CreateAccount;
+export default CreateAccountPage;
