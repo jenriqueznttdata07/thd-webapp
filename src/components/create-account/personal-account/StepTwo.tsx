@@ -5,7 +5,9 @@ const StepTwo: React.FC = () => {
 
     return (
         <>
-        <InputPassword></InputPassword>
+        <div className="row">
+            <InputPassword></InputPassword>
+        </div>
         </>
     );
 }

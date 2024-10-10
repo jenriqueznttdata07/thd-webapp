@@ -2,11 +2,15 @@
 import StepOne from "@/components/create-account/personal-account/StepOne";
 import StepTwo from "@/components/create-account/personal-account/StepTwo";
 import "@/styles/CreateAccount.css";
+import { useState } from "react";
 
 const CreateAccount: React.FC = () => {
+
+    const [isStepOneCompleted, setIsStepOneCompleted] = useState<boolean>(false);
+
     return (
         <>
-            <div>
+            <div className="container">
                 <div className="row">
                     <div className="col-2">
                         <button>Cancel</button>
@@ -19,12 +23,12 @@ const CreateAccount: React.FC = () => {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <p>Create a New Account using</p>
+                        <p className="fw-bold">Create a New Account using</p>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <p>jenriquezc7@gmail.com</p>
+                        <p className="fw-bold">jenriquezc7@gmail.com</p>
                     </div>
                 </div>
                 <div className="row">
@@ -35,7 +39,7 @@ const CreateAccount: React.FC = () => {
                                 <span>I'm shopping for</span>
                             </p>
                         </div>
-                        <StepOne></StepOne>
+                        <StepOne setIsStepOneCompleted={setIsStepOneCompleted}></StepOne>
                     </div>
                     <div className="row">
                         <div className="row">
@@ -46,19 +50,21 @@ const CreateAccount: React.FC = () => {
                         </div>
                         <StepTwo></StepTwo>
                     </div>
-                    <div>
-                        <div>
-                            <div>
-                                <button>3</button>
-                                <p>My phone number will be</p>
+                    <div className="row">
+                        <div className="row">
+                            <div className="row">
+                                <p>
+                                    <button>3</button>
+                                    My phone number will be
+                                </p>
                             </div>
-                            <div>
+                            <div className="row">
                                 <input type="text" placeholder="Enter a phone number" />
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div>
+                    <div className="row">
+                        <div className="row">
                             <button>
                                 Continue
                             </button>
