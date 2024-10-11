@@ -111,5 +111,23 @@
             }
         ]
     }
-]
+],
+  "season-pictures": [
+    {
+      "url": "https://dam.thdstatic.com/contentful/heroflattenimage/08OCT2024-MW36-HERO1-ANTI-MOB2.jpg",
+      "id": 1
+    },
+    {
+      "url": "https://dam.thdstatic.com/contentful/heroflattenimage/07OCT2024-MW36-Hero2-SS2-MOB.jpg",
+      "id": 2
+    },
+    {
+      "url": "https://dam.thdstatic.com/contentful/heroflattenimage/03OCT2024-HP-MW36-HERO4-APPLIANCES-MOB.jpg",
+      "id": 3
+    },
+    {
+      "url": "https://dam.thdstatic.com/contentful/heroflattenimage/03OCT2024-HP-MW36-HERO5-HALLOWEEN3-MOB.jpg",
+      "id": 4
+    }
+  ]
 }

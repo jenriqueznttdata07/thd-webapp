@@ -6,6 +6,13 @@ import ProductSlider from '@/components/ProductSlider';
 import "@/styles/Navbar.css";
 import "@/styles/Footer.css";
 import { products } from '../app/data/products';
+import "@/styles/Carrousel.css"
+import React from "react";
+import Carrousel from "@/components/Carrousel";
+import { EmblaOptionsType } from 'embla-carousel';
+
+const OPTIONS: EmblaOptionsType = { loop: true }
+const SLIDE_COUNT = 4
 
 const Home = () => {
     return (
@@ -19,11 +26,9 @@ const Home = () => {
                     <div className="main-content">
 
                         {/* Sección 1 */}
-                        <div className="mb-4">
-                            <div className="banner p-4 border bg-light rounded">
-                                <h2 className="text-center">SLIDER</h2>
-                            </div>
-                        </div>
+  <div className="row justify-content-center">
+    <Carrousel slides={SLIDE_COUNT} options={OPTIONS} />
+  </div>
 
                         {/* Sección 2 */}
                         <div className="mb-4">
@@ -38,6 +43,7 @@ const Home = () => {
                                 <h2 className="text-center">SLIDER - Compra por categorías</h2>
                             </div>
                         </div>
+  
 
                         {/* Sección 4 */}
                         <div className="mb-4">
