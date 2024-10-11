@@ -141,6 +141,7 @@
     font-size: 14px;
 }
 
+
 /* Continue button styling */
 .continue-button {
     width: 100%;
@@ -152,6 +153,7 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 /* Disable state for the continue button */

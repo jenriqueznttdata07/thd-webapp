@@ -50,11 +50,11 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
   };
 
   const handleBackClick = () => {
-    window.history.back();
+    router.push('/signinpage')
   };
 
   const handleAnotherActionClick = () => {
-    window.history.back();
+    router.push('/signinpage')
   };
 
   const [isValidForm, setIsValid] = useState(false);
@@ -110,6 +110,7 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
                 <ErrorMessage name="password" component="div" className="error-message" />
               </div>
             </div>
+            <div className='butttoncontainer'>
             <button
               type="submit"
               disabled={isSubmitting || !isValidForm} 
@@ -124,6 +125,7 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
             >
               Cancel
             </button>
+            </div>
           </Form>
         )}
       </Formik>

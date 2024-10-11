@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './page.css';
 import { useRouter } from "next/navigation";
-import { isRegister } from "@/app/services/auth.service";
+import { isRegister, updateIsFirstTime } from "@/app/services/auth.service";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import SideModal from '@/components/SideModal'; 
@@ -22,18 +22,23 @@ const Page: React.FC = () => {
 
  
   const handleSubmit = async (values: { email: string }) => {
-    const isRegistered = await isRegister(values.email);
+    const user = await isRegister(values.email);
     setemail(values.email);
 
-    if (isRegistered) {
+    if (user) {
+      if(user.isFirstTime){
+        await updateIsFirstTime(user.id!);
+        setShowModal(true);
+      }else{
         router.push(`/passwordpage?email=${encodeURIComponent(values.email)}`);
+      }
     } else {
         router.push(`/create-account?email=${encodeURIComponent(values.email)}`);
     }
   };
 
   const handleBackClick = () => {
-    window.history.back();
+   router.push('/')
   };
 
   const [isValidForm, setIsValid] = useState(false);
@@ -115,7 +120,6 @@ const Page: React.FC = () => {
         For Two-Factor Authentication, message and data rates may apply.
       </div>
 
-      {/* Modal */}
       <SideModal show={showModal} onClose={() => setShowModal(false)} email= {email} />
     </div>
   );

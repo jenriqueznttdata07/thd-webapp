@@ -5,6 +5,7 @@ import { useAppDispatch } from "@/app/store";
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { setAuth, setJid } from '../store/slices/authSlice';
 import * as Yup from 'yup';
 import './page.css';
 
@@ -35,8 +36,9 @@ const VerificationCodePage: React.FC<CodePageProps> = () => {
 
   const handleSubmit = async (values: { email: string; code: string }) => {
     try {
-      const ist = await getAuthByCode(values.code);
-     if(ist){
+      const response = await getAuthByCode(values.code);
+     if(response){
+      dispatch(setAuth(true))
       router.push('/');
      }else{
        alert('the code is incorrect');

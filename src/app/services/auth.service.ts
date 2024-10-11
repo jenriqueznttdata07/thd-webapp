@@ -28,7 +28,7 @@ export const getAuthByCode = async (code: String): Promise<boolean> => {
         return false;
     }
 }
-export const isRegister = async (userEmail: String): Promise<boolean> => {
+export const isRegister = async (userEmail: String): Promise<User> => {
     const response = await axios.get<null, AxiosResponse<User[]> | AxiosError<Error>>(`http://localhost:3000/users?username=${userEmail}`)
     console.log('getAuth-response', response);
 
@@ -36,7 +36,9 @@ export const isRegister = async (userEmail: String): Promise<boolean> => {
         throw response;
     };
 
-    return response.data.length > 0 ? true : false;
+    const [user] = response.data;
+
+    return user;
 }
 
 
@@ -50,4 +52,14 @@ export const getCode = async (userEmail: String): Promise<string> => {
 
     return response.data.length > 0 ? response.data[0].code! : '1234';
 
+}
+
+export const updateIsFirstTime = async (useremail: string): Promise<void> => {
+    const response = await axios.patch(`http://localhost:3000/users/${useremail}`,{
+        isFirstTime: false
+    });
+    console.log("aqui",response);
+    if (isAxiosError(response) || response.status !== 200) {
+        throw response;
+    };
 }

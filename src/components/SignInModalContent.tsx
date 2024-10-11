@@ -7,13 +7,20 @@ import pro from '../icons/pro.png';
 import products from '../icons/products.png';
 import profile from '../icons/profile.png';
 import track from '../icons/track.png';
+import logout from '../icons/logout.png';
 import { useRouter } from "next/navigation";
 import '../styles/AdaptiveModal.css';
 import { useAppSelector } from '@/app/store';
+import { setAuth, setJid } from '@/app/store/slices/authSlice';
+import { useAppDispatch } from "@/app/store";
+
+
 
 const ModalContent: React.FC = () => {
     const router = useRouter();
     const isAuth = useAppSelector((state) => state.auth.isAuth);
+    const dispatch = useAppDispatch();
+
 
     const items = [
         { text: 'Track Order', icon: track },
@@ -23,6 +30,11 @@ const ModalContent: React.FC = () => {
         { text: 'Profile', icon: profile },
         { text: 'Product List', icon: products },
     ];
+
+    if (isAuth) {
+        items.push({ text: 'Logout', icon: logout })
+    }
+
 
     const handleNavigation = (text: string) => {
         switch (text) {
@@ -41,6 +53,11 @@ const ModalContent: React.FC = () => {
             case 'Product List':
                 router.push('/product-list');
                 break;
+            case 'Logout':
+                dispatch(setJid(''));
+                dispatch(setAuth(false));
+                router.push('/');
+                break;
             default:
                 router.push('/defaultpage');
         }
@@ -48,24 +65,24 @@ const ModalContent: React.FC = () => {
 
     return (
         <>
-            
-                <ButtonGroup className="button-group-container mb-3" hidden={isAuth}>
-                    <Button
-                        className="custom-button"
-                        variant="secondary"
-                        onClick={() => router.push('/signinpage')}
-                    >
-                        Sign in
-                    </Button>
-                    <Button
-                        className="custom-button-2"
-                        variant="light"
-                        onClick={() => alert('Botón 2 clicado')}
-                    >
-                        Register
-                    </Button>
-                </ButtonGroup>
-            
+
+            <ButtonGroup className="button-group-container mb-3" hidden={isAuth}>
+                <Button
+                    className="custom-button"
+                    variant="secondary"
+                    onClick={() => router.push('/signinpage')}
+                >
+                    Sign in
+                </Button>
+                <Button
+                    className="custom-button-2"
+                    variant="light"
+                    onClick={() => router.push('/create-account')}
+                >
+                    Register
+                </Button>
+            </ButtonGroup>
+
             <div className="extra-item" style={{ marginBottom: '10px' }}>
                 <button
                     onClick={() => alert('Ítem Extra clicado')}

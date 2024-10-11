@@ -1,8 +1,14 @@
 /* src/CodeDisplay.css */
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     text-align: center;
     padding: 40px;
-    background-color: #f9f9f9;
+    justify-content: center;
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
@@ -14,14 +20,15 @@
   }
   
   .code-block {
-    background-color: #282c34;
-    color: #61dafb;
+    background-color: #FF6100;
+    color: #ffffff;
     padding: 20px;
     border-radius: 5px;
     overflow-x: auto;
     white-space: pre-wrap; /* Asegura que el código se ajuste */
     max-width: 600px;
     margin: 0 auto;
+    font-size: x-large;
   }
   
   .logo {

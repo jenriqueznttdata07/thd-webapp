@@ -25,10 +25,10 @@ const CodeDisplay: React.FC<CodeDisplayProps> = () => {
     <div className="container">
       <img 
         className="logo"
-        src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Office_Depot_Logo.svg/1200px-Office_Depot_Logo.svg.png" 
+        src="https://tse2.mm.bing.net/th/id/OIP.5S8nLA3Iq5CizlrCN71zhAHaFA?rs=1&pid=ImgDetMain" 
         alt="Logo de The Office Depot" 
       />
-      <h1 className="title">Este es tu código</h1>
+      <h1 className="title">Take your code: </h1>
       <pre className="code-block">
         {code}
       </pre>

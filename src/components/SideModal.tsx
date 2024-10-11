@@ -1,8 +1,9 @@
 import React from 'react';
 import '../styles/SideModal.css';
 import { useRouter } from "next/navigation";
-import { useSearchParams } from 'next/navigation';
-
+import smileface from '../icons/smileface.png';
+import finger from '../icons/finger.png';
+import key from '../icons/key.png';
 interface SideModalProps {
     show: boolean;
     onClose: () => void;
@@ -31,9 +32,9 @@ const SideModal: React.FC<SideModalProps> = ({ show, onClose, email }) => {
                     Signing in just got easier.
                 </div>
                 <div className="icon-container">
-                    <img src="icon1.png" alt="Icon 1" />
-                    <img src="icon2.png" alt="Icon 2" />
-                    <img src="icon3.png" alt="Icon 3" />
+                    <img src={smileface.src} alt="Icon 1" />
+                    <img src={finger.src} alt="Icon 2" />
+                    <img src={key.src} alt="Icon 3" />
                 </div>
                 <button className="orange-button"
                     onClick={handleSendCodeClick}>Text me a code to sign in</button>
