@@ -42,9 +42,10 @@
   
   .icon-container {
     display: flex;
-    justify-content: space-around; /* Espacio uniforme entre iconos */
+    justify-content: center; /* Espacio uniforme entre iconos */
     margin-bottom: 20px;
-  }
+    gap: 20px;
+}
   
   .orange-button {
     background-color: #FF6100;

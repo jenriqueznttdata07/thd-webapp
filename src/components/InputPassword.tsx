@@ -10,6 +10,10 @@ interface ValidPassword {
     hasOneSpecialChar: boolean;
 }
 
+interface InputFormik {
+    password: string;
+}
+
 const InputPassword: React.FC = () => {
     const [passwordType, setPasswordType] = useState<boolean>(true);
     const [validPassword, setValidPassword] = useState<ValidPassword>({
