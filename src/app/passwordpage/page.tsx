@@ -7,6 +7,10 @@ import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './page.css';
+import { setAuth, setJid } from '../store/slices/authSlice';
+import { useAppSelector } from '@/app/store';
+
+
 
 interface PasswordPageProps {
   emailFromPreviousPage: string; // Prop para recibir el email
@@ -20,7 +24,7 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
   const dispatch = useAppDispatch();
 
   const initialValues = {
-    email: emailFromPreviousPage,
+    email: emailFromPreviousPage || '',
     password: ''
   };
 
@@ -36,6 +40,9 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
     try {
       const response = await getAuth(values);
       const id = response.id ? response.id : '';
+      dispatch(setJid(id))
+      dispatch(setAuth(true))
+
       router.push('/');
     } catch (err) {
       console.error(err);
@@ -43,11 +50,11 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
   };
 
   const handleBackClick = () => {
-    window.history.back();
+    router.push('/signinpage')
   };
 
   const handleAnotherActionClick = () => {
-    window.history.back();
+    router.push('/signinpage')
   };
 
   const [isValidForm, setIsValid] = useState(false);
@@ -103,6 +110,7 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
                 <ErrorMessage name="password" component="div" className="error-message" />
               </div>
             </div>
+            <div className='butttoncontainer'>
             <button
               type="submit"
               disabled={isSubmitting || !isValidForm} 
@@ -117,6 +125,7 @@ const PasswordPage: React.FC<PasswordPageProps> = () => {
             >
               Cancel
             </button>
+            </div>
           </Form>
         )}
       </Formik>

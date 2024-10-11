@@ -1,7 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import '@/styles/profile.css';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import cloneDeep from 'lodash/cloneDeep';
 import { useFormik } from 'formik';

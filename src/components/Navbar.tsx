@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import MySidebar from '@/components/AdaptiveModal'; // Asegúrate de que el nombre del archivo sea correcto
+import MySidebar from '@/components/AdaptiveModal'; 
 import Sig from '@/components/SignInModalContent';
 import { Container, Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { useAppSelector } from '@/app/store';
+
+
+
 
 const CustomNavbar: React.FC = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [sidebarTitle, setSidebarTitle] = useState('');
   const [sidebarContent, setSidebarContent] = useState<React.ReactNode>(null);
+
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
 
   const handleShow = () => setShowSidebar(true);
   const handleClose = () => setShowSidebar(false);
@@ -81,13 +87,13 @@ const CustomNavbar: React.FC = () => {
 
             <Nav.Link href="#">
               <div className="icon-container"
-               onClick={() => handleButtonClick('Sign In or Create an Account', <Sig />)} >
+               onClick={() => handleButtonClick(isAuth ? 'Hello!':'Sign In or Create an Account', <Sig />)} >
                 <img 
                   src="/images/me.png" 
                   alt="Account Icon" 
                   className="nav-icon" 
                 />
-                <span className="icon-text">Me</span>
+                <span className="icon-text"> {isAuth ? 'Me' : "Login"}</span>
               </div>
             </Nav.Link>
 
