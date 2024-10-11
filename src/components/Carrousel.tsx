@@ -12,7 +12,7 @@ type Slide = {
 };
 
 type PropType = {
-    slides: Slide;
+    slides: number;
     options?: EmblaOptionsType;
 };
 
