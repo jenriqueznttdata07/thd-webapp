@@ -1,6 +1,7 @@
 export interface User {
     id?: string;
-    email: string,
-    password?: string,
-    isFirstTime?: boolean,
+    email: string;
+    password?: string;
+    isFirstTime?: boolean;
+    accountTypeId?: number;
 }

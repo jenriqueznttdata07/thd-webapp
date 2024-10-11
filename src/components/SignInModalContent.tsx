@@ -77,7 +77,7 @@ const ModalContent: React.FC = () => {
                 <Button
                     className="custom-button-2"
                     variant="light"
-                    onClick={() => router.push('/create-account')}
+                    onClick={() => router.push('/signinpage')}
                 >
                     Register
                 </Button>

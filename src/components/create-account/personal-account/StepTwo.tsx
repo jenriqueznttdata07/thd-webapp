@@ -1,12 +1,19 @@
 import InputPassword from "@/components/InputPassword";
 import "@/styles/InputPassword.css";
 
-const StepTwo: React.FC = () => {
+interface StepTwoProps {
+    handlePasswordInput: (value: string) => void;
+}
+
+const StepTwo: React.FC<StepTwoProps> = ({
+    handlePasswordInput
+}) => {
 
     return (
         <>
         <div className="row">
-            <InputPassword></InputPassword>
+            <InputPassword
+                handlePasswordInput={handlePasswordInput}></InputPassword>
         </div>
         </>
     );

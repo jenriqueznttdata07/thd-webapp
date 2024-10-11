@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "1acb8ebc",
-      "username": "g.mendoza@nttdata.com",
+      "email": "g.mendoza@nttdata.com",
       "password": "Qwerty123",
       "isFirstTime": false,
       "hasActiveQuickSignIn": false,
@@ -13,13 +13,14 @@
   ],
   "auth-codes": [
     {
-      "username": "g.mendoza@nttdata.com",
-      "code": "454786"
+      "email": "g.mendoza@nttdata.com",
+      "code": "454786",
+      "id": "8e84"
     }
   ],
   "account-types": [
     {
-      "id": 1,
+      "id": "1",
       "name": "MySelf",
       "accountType": "Personal Account",
       "icons": [
@@ -57,7 +58,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "My Business",
       "accountType": "Pro Xtra Account",
       "icons": [

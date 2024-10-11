@@ -1,4 +1,4 @@
 export interface AuthCode {
-    username: string,
+    email: string,
     code?: string,
 }

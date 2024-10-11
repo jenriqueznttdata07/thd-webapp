@@ -49,6 +49,7 @@ const CreateBusinessAccountPage: React.FC = () => {
         <>
             <div className="row">
                 <div className="col-6 justify-content-end">
+                    <form onSubmit={formik.handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email address</label>
                         <input
@@ -119,6 +120,7 @@ const CreateBusinessAccountPage: React.FC = () => {
                         className="btn btn-warning col-12 mt-2">
                         Register for Pro Xtra
                     </button>
+                    </form>
                     <p className="text-center mt-3">
                         By selecting 'Register for Pro Xtra' you are agreeing to the
                         <a href="https://www.homedepot.com/c/ProXtra_TermsandConditions#membership" className="terms-link" target="_blank" rel="noopener noreferrer">Pro Xtra Terms and Conditions</a>,

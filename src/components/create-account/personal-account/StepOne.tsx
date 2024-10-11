@@ -7,9 +7,12 @@ import * as AccountTypesService from "../../../services/account-types.service";
 
 interface StepOneProps {
     setIsStepOneCompleted: Dispatch<SetStateAction<boolean>>;
+    onSelectAccountType: (accountType: AccountType) => void
 }
 
-const StepOne: React.FC<StepOneProps> = ({ setIsStepOneCompleted }) => {
+const StepOne: React.FC<StepOneProps> = ({ setIsStepOneCompleted,
+    onSelectAccountType
+ }) => {
     
     const [accountTypes, setAccountTypes] = useState<AccountType[]>([]);
     const [accountTypeSelected, setAccountTypeSelected] = useState<AccountType | null>(null);
@@ -26,6 +29,7 @@ const StepOne: React.FC<StepOneProps> = ({ setIsStepOneCompleted }) => {
         const newAccountTypeSelected = cloneDeep(accountType);
         setAccountTypeSelected(newAccountTypeSelected);
         setIsStepOneCompleted(true);
+        onSelectAccountType(newAccountTypeSelected);
     }
 
     const cardAccountTypeView = accountTypes.map((accountType) => (
