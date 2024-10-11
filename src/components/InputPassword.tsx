@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useState } from "react";
+import { FocusEvent, FocusEventHandler, useState } from "react";
 import * as Yup from "yup";
 
 interface ValidPassword {
@@ -9,7 +9,6 @@ interface ValidPassword {
     hasOneNumber: boolean;
     hasOneSpecialChar: boolean;
 }
-
 
 const InputPassword: React.FC = () => {
     const [passwordType, setPasswordType] = useState<boolean>(true);
@@ -21,6 +20,7 @@ const InputPassword: React.FC = () => {
         hasOneSpecialChar: false
     });
     const [strength, setStrength] = useState<string>('');
+    const [toggleStrength, setTooggleStrength] = useState<boolean>(false);
 
     const STRENGTH: { [name:string]: number } = {
         Initial: 0,
@@ -129,6 +129,15 @@ const InputPassword: React.FC = () => {
         setPasswordType(!passwordType);
     }
 
+    const handleOnBlur = (e: FocusEvent<HTMLInputElement, Element>) => {
+        setTooggleStrength(false);
+        formik.handleBlur(e)
+    }
+
+    const handleOnFocus = () => {
+        setTooggleStrength(true);
+    }
+
     const verifyRequirement = (requirementValue: boolean) => {
         return requirementValue 
             ? <i className="bi bi-check text-success fs-3"></i>
@@ -140,9 +149,12 @@ const InputPassword: React.FC = () => {
             <div className="input-group mb-3">
                 <input 
                     id="password"
+                    onFocus={() => handleOnFocus()}
                     type={ passwordType ? "password" : "text"}
                     className="form-control"
-                    {...formik.getFieldProps("password")}/>
+                    onChange={formik.handleChange}
+                    onBlur={(e) => handleOnBlur(e) }
+                    value={formik.values.password}/>
                 <button 
                     className="btn btn-outline-info" 
                     type="button"
@@ -150,43 +162,45 @@ const InputPassword: React.FC = () => {
                         { passwordType ? "Show" : "Hide"}
                 </button>
             </div>
-            <p className="text-start">Create a strong password</p>
-            <p className="text-start fw-bold">Password must contain:</p>
-            <p className="text-start">
-                <span className="fs-6 text-body-secondary">
-                    {verifyRequirement(validPassword.isLengthValid)}
-                    9 characters minimum
-                </span>
-            </p>
-            <p className="text-start fw-bold">And 3 of the following</p>
-            <p className="text-start">
-                <span className="fs-6 text-body-secondary m-2">
-                    {verifyRequirement(validPassword.hasOneUppercase)}
-                    Uppercase letter
-                </span>
-                <span className="fs-6 text-body-secondary m-2">
-                    {verifyRequirement(validPassword.hasOneNumber)}
-                    Number
-                </span>
-            </p>
-            <p className="text-start">
-                <span className="fs-6 text-body-secondary m-2">
-                    {verifyRequirement(validPassword.hasOneLowercase)}
-                    Lowercase letter
-                </span>
-                <span className="fs-6 text-body-secondary m-2">
-                    {verifyRequirement(validPassword.hasOneSpecialChar)}
-                    Special characters
-                </span>
-            </p>
-            <p className="fw-bold text-start">Stregth: <span>{strength}</span></p>
-            <div>
+            {toggleStrength && 
+            <>
+                <p className="text-start">Create a strong password</p>
+                <p className="text-start fw-bold">Password must contain:</p>
+                <p className="text-start">
+                    <span className="fs-6 text-body-secondary">
+                        {verifyRequirement(validPassword.isLengthValid)}
+                        9 characters minimum
+                    </span>
+                </p>
+                <p className="text-start fw-bold">And 3 of the following</p>
+                <p className="text-start">
+                    <span className="fs-6 text-body-secondary m-2">
+                        {verifyRequirement(validPassword.hasOneUppercase)}
+                        Uppercase letter
+                    </span>
+                    <span className="fs-6 text-body-secondary m-2">
+                        {verifyRequirement(validPassword.hasOneNumber)}
+                        Number
+                    </span>
+                </p>
+                <p className="text-start">
+                    <span className="fs-6 text-body-secondary m-2">
+                        {verifyRequirement(validPassword.hasOneLowercase)}
+                        Lowercase letter
+                    </span>
+                    <span className="fs-6 text-body-secondary m-2">
+                        {verifyRequirement(validPassword.hasOneSpecialChar)}
+                        Special characters
+                    </span>
+                </p>
+                <p className="fw-bold text-start">Stregth: <span>{strength}</span></p><div>
                 <div className="progress">
-                    <div 
+                    <div
                         className={`progress-bar ${STRENGTH_STYLE[strength]}`}
                         style={{ width: `${STRENGTH[strength]}%` }}></div>
+                    </div>
                 </div>
-            </div>
+            </>}
         </>
     );
 }

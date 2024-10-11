@@ -22,18 +22,21 @@ const CreateBusinessAccountLayout: React.FC<CreateBusinessAccountLayoutProps> = 
     };
 
     return (
-        <div className="flex-container">
+      <>
+      <div className="row justify-content-center m-1">
           <button type="button" className="logo-button" onClick={handleHomeClick}>
             <img
-              src="https://mma.prnewswire.com/media/118058/the_home_depot_logo.jpg?p=facebook"
-              alt="Home Depot Logo"
+              src="/images/ba-pro-xtra-logo.svg"
+              alt="Home Depot Pro Xtra Logo"
               className="logo-image"
             />
           </button>
-          <div className="header-container">
-            <p className="header-text">Create a Pro Xtra Account</p>
-          </div>
-          <div className="back-button-container">
+      </div>
+      <div className="row">
+          <p className="text-center fw-bold">Create a Pro Xtra Account</p>
+      </div>
+      <div className="row justify-content-center">
+        <div className="col-3">
             <button type="button" onClick={handleBackClick} className="back-button">
               <span className="back-button-content">
                 <img
@@ -44,11 +47,14 @@ const CreateBusinessAccountLayout: React.FC<CreateBusinessAccountLayoutProps> = 
                 Back
               </span>
             </button>
-          </div>
-          <div className="terms-container">
-            {children}
-          </div>
         </div>
+      </div>
+      <div className="row justify-content-center">
+        <div className="col-8">
+          {children}
+        </div>
+      </div>
+      </>
     );
 };
 

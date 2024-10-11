@@ -18,11 +18,8 @@ const CreateAccountPage: React.FC = () => {
     
 
     const handlePhoneInput = (value: string) => {
-        console.log('value', value);
         setPhone(value);
     }
-
-    console.log('phone', phone);
 
     const isStepCompleted = (value: boolean) => {
         let baseStyle = "btn btn-step";

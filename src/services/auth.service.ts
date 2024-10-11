@@ -23,3 +23,18 @@ export const isRegister = async (userEmail: String): Promise<boolean> => {
 
     return response.data.length > 0;
 }
+
+export const createUser = async (user: User): Promise<void> => {
+    const response = await AxiosIntance.post<null, AxiosResponse<User> | AxiosError<Error>>(`users/${user.id}`, user)
+    if(isAxiosError(response) || response.status !== 200) {
+        throw response;
+    };
+}
+
+
+export const updateUser = async (user: User): Promise<void> => {
+    const response = await AxiosIntance.patch<null, AxiosResponse<User> | AxiosError<Error>>(`users/${user.id}`, user)
+    if(isAxiosError(response) || response.status !== 200) {
+        throw response;
+    };
+}
