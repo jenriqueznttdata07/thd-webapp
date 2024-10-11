@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { getAuthByCode } from "@/app/services/auth.service";
+import { getAuthByCode } from "@/services/auth.service";
 import { useAppDispatch } from "@/app/store";
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from "next/navigation";

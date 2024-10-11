@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { FocusEvent, FocusEventHandler, useState } from "react";
+import { ChangeEvent, Dispatch, FocusEvent, FocusEventHandler, useState } from "react";
 import * as Yup from "yup";
 
 interface ValidPassword {
@@ -14,7 +14,13 @@ interface InputFormik {
     password: string;
 }
 
-const InputPassword: React.FC = () => {
+interface InputPasswordProps {
+    handlePasswordInput: (value: string) => void;
+}
+
+const InputPassword: React.FC<InputPasswordProps> = ({
+    handlePasswordInput
+}) => {
     const [passwordType, setPasswordType] = useState<boolean>(true);
     const [validPassword, setValidPassword] = useState<ValidPassword>({
         isLengthValid: false,
@@ -148,6 +154,11 @@ const InputPassword: React.FC = () => {
             : <i className="bi bi-x text-secondary fs-3"></i>;
     }
 
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+        handlePasswordInput(e.target.value);
+        formik.handleChange(e);
+    }
+
     return (
         <>
             <div className="input-group mb-3">
@@ -156,7 +167,7 @@ const InputPassword: React.FC = () => {
                     onFocus={() => handleOnFocus()}
                     type={ passwordType ? "password" : "text"}
                     className="form-control"
-                    onChange={formik.handleChange}
+                    onChange={(e) => handleOnChange(e)}
                     onBlur={(e) => handleOnBlur(e) }
                     value={formik.values.password}/>
                 <button 

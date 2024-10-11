@@ -2,9 +2,10 @@ import { AxiosError, AxiosResponse, isAxiosError } from "axios";
 import { User } from "../domain/models/User";
 import AxiosIntance from "@/utils/axios-intance";
 import { AuthCode } from "@/domain/models/AuthCode";
+import { v4 as uuid } from 'uuid';
 
 export const getAuth = async (user: User): Promise<User> => {
-    const response = await AxiosIntance.get<null, AxiosResponse<User[]> | AxiosError<Error>>(`users?username=${user.email}&password=${user.password}`)
+    const response = await AxiosIntance.get<null, AxiosResponse<User[]> | AxiosError<Error>>(`users?email=${user.email}&password=${user.password}`)
     console.log('getAuth-response', response);
     if(isAxiosError(response) || response.status !== 200) {
         throw response;
@@ -30,7 +31,7 @@ export const getAuthByCode = async (code: String): Promise<boolean> => {
 }
 
 export const isRegister = async (userEmail: String): Promise<User> => {
-    const response = await AxiosIntance.get<null, AxiosResponse<User[]> | AxiosError<Error>>(`users?username=${userEmail}`)
+    const response = await AxiosIntance.get<null, AxiosResponse<User[]> | AxiosError<Error>>(`users?email=${userEmail}`)
     console.log('getAuth-response', response);
 
     if(isAxiosError(response) || response.status !== 200) {
@@ -41,8 +42,22 @@ export const isRegister = async (userEmail: String): Promise<User> => {
     return user;
 }
 
+export const createCode = async (email: String): Promise<void> => {
+    const response = await AxiosIntance.post<null, AxiosResponse<AuthCode[]> | AxiosError<Error>>(`auth-codes`, {
+        email,
+        code: "454786",
+        id: uuid()
+      }
+    )
+    console.log('getAuth-response', response);
+
+    if (isAxiosError(response) || response.status !== 201) {
+        throw response;
+    };
+}
+
 export const getCode = async (userEmail: String): Promise<string> => {
-    const response = await AxiosIntance.get<null, AxiosResponse<AuthCode[]> | AxiosError<Error>>(`auth-codes?username=${userEmail}`)
+    const response = await AxiosIntance.get<null, AxiosResponse<AuthCode[]> | AxiosError<Error>>(`auth-codes?email=${userEmail}`)
     console.log('getAuth-response', response);
 
     if (isAxiosError(response) || response.status !== 200) {
@@ -65,8 +80,8 @@ export const updateIsFirstTime = async (useremail: string): Promise<void> => {
 
 
 export const createUser = async (user: User): Promise<void> => {
-    const response = await AxiosIntance.post<null, AxiosResponse<User> | AxiosError<Error>>(`users/${user.id}`, user)
-    if(isAxiosError(response) || response.status !== 200) {
+    const response = await AxiosIntance.post<null, AxiosResponse<User> | AxiosError<Error>>(`users`, user)
+    if(isAxiosError(response) || response.status !== 201) {
         throw response;
     };
 }

@@ -3,7 +3,7 @@ import PhoneInput from "@/components/PhoneInput";
 import StepOne from "@/components/create-account/personal-account/StepOne";
 import StepTwo from "@/components/create-account/personal-account/StepTwo";
 import { AccountType } from "@/domain/models/AccountType";
-import { createUser } from "@/services/auth.service";
+import { createCode, createUser } from "@/services/auth.service";
 import "@/styles/CreateAccount.css";
 import { useFormik } from "formik";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -12,7 +12,9 @@ import * as Yup from "yup";
 import { v4 as uuid } from 'uuid';
 
 interface NewAccount {
+    id: string;
     email: string;
+    isFirstTime: boolean;
     accountTypeId: number;
     password: string;
     phone: string;
@@ -29,32 +31,51 @@ const CreateAccountPage: React.FC = () => {
     const id = uuid();
     const initialValues = {
         id,
-        isFirstTime: false,
+        isFirstTime: true,
         email: emailFromPreviousPage,
         accountTypeId: 0,
         password: "",
         phone: "",
     };
-    const [newAccount, setNewAccount] = useState<NewAccount>(initialValues);
+    const [newAccount, setNewAccount] = useState<NewAccount>({
+        id,
+        isFirstTime: true,
+        email: emailFromPreviousPage,
+        accountTypeId: 0,
+        password: "",
+        phone: "",
+    });
     const validationSchema = {
+        id: Yup.string(),
+        email: Yup.string(),
         accountTypeId: Yup.number().required(),
         password: Yup.string().required(),
         phone: Yup.string().required(),
-    }
+        isFirstTime: Yup.boolean().optional()
+    };
     
     const formik = useFormik({
         initialValues,
         validationSchema,
         onSubmit: (values) => {
-            const newUser = {...values};
-            createUser(newUser);
-            router.replace("/");
+            console.log(values);
         }
     });
+
+    const handleClickAccountType = () => {
+        console.log('handleClickAccountType');
+        createUser(newAccount);
+        createCode(newAccount.email);
+        router.replace("/");
+    }
     
 
     const handlePhoneInput = (value: string) => {
-        setPhone(value);
+        setNewAccount({...newAccount, phone: value});
+    }
+
+    const handlePasswordInput = (value: string) => {
+        setNewAccount({...newAccount, password: value});
     }
 
     const isStepCompleted = (value: boolean) => {
@@ -70,9 +91,10 @@ const CreateAccountPage: React.FC = () => {
     }
 
     const onSelectAccountType = (selectedAccountType: AccountType) => {
-        setNewAccount({...newAccount, accountTypeId: selectedAccountType.id})
+        console.log('onSelectAccountType', selectedAccountType);
+        setNewAccount({...newAccount, accountTypeId: +selectedAccountType.id});
     }
-    
+
     const isValidForm = () => {
         return !formik.errors.accountTypeId
             && !formik.errors.password
@@ -81,7 +103,6 @@ const CreateAccountPage: React.FC = () => {
 
     return (
         <>
-            <form onSubmit={formik.handleSubmit}>
             <div className="row">
                 <div className="row">
                     <p className="text-start">
@@ -105,7 +126,8 @@ const CreateAccountPage: React.FC = () => {
                                 <span className="m-3 fw-bold">My Password will be</span>
                             </p>
                         </div>
-                        <StepTwo>
+                        <StepTwo
+                            handlePasswordInput={handlePasswordInput}>
                         </StepTwo>
                     </div>
                     <div className="row">
@@ -127,15 +149,17 @@ const CreateAccountPage: React.FC = () => {
             { newAccount.accountTypeId === 2 &&
                 <>
                 <div className="row justify-content-center m-3">
-                    <button className="btn btn-warning col-12" onClick={handleCreateBusinessAccount}>Continue</button>
+                    <button 
+                        className="btn btn-warning col-12" 
+                        onClick={handleCreateBusinessAccount}>Continue</button>
                 </div>
                 </>}
             
-            { newAccount.accountTypeId === 1 && isValidForm() 
+            { newAccount.accountTypeId === 1
                 &&
                 <>
                 <button 
-                    type="submit"
+                    onClick={handleClickAccountType}
                     className="btn btn-warning col-12 mt-2">
                     Create My Account
                 </button>
@@ -148,7 +172,6 @@ const CreateAccountPage: React.FC = () => {
                 </p>
                 </>
             }
-        </form>
         </>
     );
 };
