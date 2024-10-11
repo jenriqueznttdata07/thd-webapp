@@ -3,20 +3,22 @@ import PhoneInput from "@/components/PhoneInput";
 import StepOne from "@/components/create-account/personal-account/StepOne";
 import StepTwo from "@/components/create-account/personal-account/StepTwo";
 import { AccountType } from "@/domain/models/AccountType";
+import { createUser } from "@/services/auth.service";
 import "@/styles/CreateAccount.css";
 import { useFormik } from "formik";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import * as Yup from "yup";
+import { v4 as uuid } from 'uuid';
 
 interface NewAccount {
+    email: string;
     accountTypeId: number;
     password: string;
     phone: string;
 }
 
 const CreateAccountPage: React.FC = () => {
-
     const [isStepOneCompleted, setIsStepOneCompleted] = useState<boolean>(false);
     const [isStepTwoCompleted, setIsStepTwoCompleted] = useState<boolean>(false);
     const [isStepThreeCompleted, setIsStepThreeCompleted] = useState<boolean>(false);
@@ -24,16 +26,16 @@ const CreateAccountPage: React.FC = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const emailFromPreviousPage = searchParams.get('email') || '';
-    const [newAccount, setNewAccount] = useState<NewAccount>({
-        accountTypeId: 0,
-        password: "",
-        phone: "",
-    })
+    const id = uuid();
     const initialValues = {
+        id,
+        isFirstTime: false,
+        email: emailFromPreviousPage,
         accountTypeId: 0,
         password: "",
         phone: "",
     };
+    const [newAccount, setNewAccount] = useState<NewAccount>(initialValues);
     const validationSchema = {
         accountTypeId: Yup.number().required(),
         password: Yup.string().required(),
@@ -43,8 +45,10 @@ const CreateAccountPage: React.FC = () => {
     const formik = useFormik({
         initialValues,
         validationSchema,
-        onSubmit: () => {
-            console.log('Submitting...');
+        onSubmit: (values) => {
+            const newUser = {...values};
+            createUser(newUser);
+            router.replace("/");
         }
     });
     
@@ -68,9 +72,16 @@ const CreateAccountPage: React.FC = () => {
     const onSelectAccountType = (selectedAccountType: AccountType) => {
         setNewAccount({...newAccount, accountTypeId: selectedAccountType.id})
     }
+    
+    const isValidForm = () => {
+        return !formik.errors.accountTypeId
+            && !formik.errors.password
+            && !formik.errors.phone;
+    }
 
     return (
         <>
+            <form onSubmit={formik.handleSubmit}>
             <div className="row">
                 <div className="row">
                     <p className="text-start">
@@ -120,16 +131,14 @@ const CreateAccountPage: React.FC = () => {
                 </div>
                 </>}
             
-            { newAccount.accountTypeId === 1 
-                && isStepOneCompleted 
-                && isStepTwoCompleted 
+            { newAccount.accountTypeId === 1 && isValidForm() 
                 &&
                 <>
                 <button 
+                    type="submit"
                     className="btn btn-warning col-12 mt-2">
                     Create My Account
                 </button>
-
                 <p className="text-center mt-3">
                 By selecting 'Sign In' you are agreeing to the
                     <a href="https://www.homedepot.com/c/ProXtra_TermsandConditions#membership" className="terms-link" target="_blank" rel="noopener noreferrer">Pro Xtra Terms and Conditions</a>,
@@ -139,6 +148,7 @@ const CreateAccountPage: React.FC = () => {
                 </p>
                 </>
             }
+        </form>
         </>
     );
 };
