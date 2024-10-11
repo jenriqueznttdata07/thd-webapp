@@ -2,9 +2,18 @@
 import PhoneInput from "@/components/PhoneInput";
 import StepOne from "@/components/create-account/personal-account/StepOne";
 import StepTwo from "@/components/create-account/personal-account/StepTwo";
+import { AccountType } from "@/domain/models/AccountType";
 import "@/styles/CreateAccount.css";
+import { useFormik } from "formik";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import * as Yup from "yup";
+
+interface NewAccount {
+    accountTypeId: number;
+    password: string;
+    phone: string;
+}
 
 const CreateAccountPage: React.FC = () => {
 
@@ -15,6 +24,29 @@ const CreateAccountPage: React.FC = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const emailFromPreviousPage = searchParams.get('email') || '';
+    const [newAccount, setNewAccount] = useState<NewAccount>({
+        accountTypeId: 0,
+        password: "",
+        phone: "",
+    })
+    const initialValues = {
+        accountTypeId: 0,
+        password: "",
+        phone: "",
+    };
+    const validationSchema = {
+        accountTypeId: Yup.number().required(),
+        password: Yup.string().required(),
+        phone: Yup.string().required(),
+    }
+    
+    const formik = useFormik({
+        initialValues,
+        validationSchema,
+        onSubmit: () => {
+            console.log('Submitting...');
+        }
+    });
     
 
     const handlePhoneInput = (value: string) => {
@@ -33,6 +65,10 @@ const CreateAccountPage: React.FC = () => {
         router.replace(`/create-business-account?email=${encodeURIComponent(emailFromPreviousPage)}`)
     }
 
+    const onSelectAccountType = (selectedAccountType: AccountType) => {
+        setNewAccount({...newAccount, accountTypeId: selectedAccountType.id})
+    }
+
     return (
         <>
             <div className="row">
@@ -43,43 +79,66 @@ const CreateAccountPage: React.FC = () => {
                     </p>
                 </div>
                 <div className="row">
-                    <StepOne setIsStepOneCompleted={setIsStepOneCompleted}></StepOne>
+                    <StepOne 
+                        setIsStepOneCompleted={setIsStepOneCompleted}
+                        onSelectAccountType={onSelectAccountType}>
+                    </StepOne>
                 </div>
             </div>
-            <div className="row mb-3">
-                <div className="row">
-                    <p className="text-start">
-                        <button className={isStepCompleted(isStepTwoCompleted)}>2</button>
-                        <span className="m-3 fw-bold">My Password will be</span>
-                    </p>
-                </div>
-                <StepTwo></StepTwo>
-            </div>
-            <div className="row">
-                <div className="row">
-                    <div className="row">
-                        <p className="text-start">
-                            <button className={isStepCompleted(isStepThreeCompleted)}>3</button>
-                            <span className="m-3 fw-bold">My phone number will be</span>
-                        </p>
+            { newAccount.accountTypeId === 1 &&
+                <>
+                    <div className="row mb-3">
+                        <div className="row">
+                            <p className="text-start">
+                                <button className={isStepCompleted(isStepTwoCompleted)}>2</button>
+                                <span className="m-3 fw-bold">My Password will be</span>
+                            </p>
+                        </div>
+                        <StepTwo>
+                        </StepTwo>
                     </div>
-                    <PhoneInput
-                        value={phone}
-                        onChange={handlePhoneInput}
-                        />
+                    <div className="row">
+                        <div className="row">
+                            <div className="row">
+                                <p className="text-start">
+                                    <button className={isStepCompleted(isStepThreeCompleted)}>3</button>
+                                    <span className="m-3 fw-bold">My phone number will be</span>
+                                </p>
+                            </div>
+                            <PhoneInput
+                                value={phone}
+                                onChange={handlePhoneInput}
+                                />
+                        </div>
+                    </div>
+                </>
+            }
+            { newAccount.accountTypeId === 2 &&
+                <>
+                <div className="row justify-content-center m-3">
+                    <button className="btn btn-warning col-12" onClick={handleCreateBusinessAccount}>Continue</button>
                 </div>
-            </div>
-            <div className="row justify-content-center m-3">
-                <button className="btn btn-warning col-12" onClick={handleCreateBusinessAccount}>Continue</button>
-            </div>
-            <div className="terms-container">
+                </>}
+            
+            { newAccount.accountTypeId === 1 
+                && isStepOneCompleted 
+                && isStepTwoCompleted 
+                &&
+                <>
+                <button 
+                    className="btn btn-warning col-12 mt-2">
+                    Create My Account
+                </button>
+
+                <p className="text-center mt-3">
                 By selecting 'Sign In' you are agreeing to the
-                <a href="https://www.homedepot.com/c/ProXtra_TermsandConditions#membership" className="terms-link" target="_blank" rel="noopener noreferrer">Pro Xtra Terms and Conditions</a>,
-                <a href="https://www.homedepot.com/c/Privacy_Security" className="terms-link" target="_blank" rel="noopener noreferrer">Privacy and Security Statement</a>,
-                <a href="https://www.homedepot.com/c/ProXtra_TermsandConditions#membership" className="terms-link" target="_blank" rel="noopener noreferrer">Notice of Financial Incentive</a> &
-                <a href="https://www.homedepot.com/c/PH_MyAccount" className="terms-link" target="_blank" rel="noopener noreferrer">My Account Terms and Conditions</a>.
-                For Two-Factor Authentication, message and data rates may apply.
-            </div>
+                    <a href="https://www.homedepot.com/c/ProXtra_TermsandConditions#membership" className="terms-link" target="_blank" rel="noopener noreferrer">Pro Xtra Terms and Conditions</a>,
+                    <a href="https://www.homedepot.com/c/Privacy_Security" className="terms-link" target="_blank" rel="noopener noreferrer">Privacy and Security Statement</a>,
+                    <a href="https://www.homedepot.com/c/ProXtra_TermsandConditions#membership" className="terms-link" target="_blank" rel="noopener noreferrer">Notice of Financial Incentive</a> &
+                    <a href="https://www.homedepot.com/c/PH_MyAccount" className="terms-link" target="_blank" rel="noopener noreferrer">My Account Terms and Conditions</a>.
+                </p>
+                </>
+            }
         </>
     );
 };
