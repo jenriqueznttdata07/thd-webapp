@@ -1,0 +1,94 @@
+.banner {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  
+  .bannerTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0071ce;
+    margin-bottom: 20px;
+  }
+  
+  .bannerContent {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .recentlyViewed, .specialOffer {
+    width: 48%;
+  }
+  
+  .recentlyViewedContent {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .browseAdButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #f96302;
+    border: 2px solid #f96302;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .browseAdButton:hover {
+    background-color: #f96302;
+    color: white;
+  }
+  
+  .specialOffer {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .offerEnds {
+    color: red;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .offerItems {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    gap: 15px;
+  }
+  
+  .offerItem {
+    text-align: center;
+  }
+  
+  .offerItem img {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  .shopSpecialsButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #f96302;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .shopSpecialsButton:hover {
+    background-color: #e55300;
+  }
