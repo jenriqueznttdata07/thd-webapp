@@ -1,23 +1,56 @@
 "use client"
 
+import InputPassword from "@/components/InputPassword";
 import { useFormik } from "formik";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import * as Yup from "yup";
+import { v4 as uuid } from 'uuid';
+import PhoneInput from "@/components/PhoneInput";
+import { createCode, createUser } from "@/services/auth.service";
+
+
+interface BusinessAccount {
+    id: string;
+    email: string | null;
+    password: string;
+    phone: string;
+    companyName: string;
+    firstName: string;
+    lastName: string;
+    companyAddress: string;
+    businessOrTrade: string;
+}
 
 const CreateBusinessAccountPage: React.FC = () => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
     const emailFromPreviousPage = searchParams.get('email');
+    const id = uuid();
     const initialValues = {
+        id,
         email: emailFromPreviousPage,
         password: '',
+        phone: '',
         companyName: '',
         firstName: '',
         lastName: '',
         companyAddress: '',
         businessOrTrade: 'DEFAULT'
     };
+    
+    const [newBusinessAccount, setNewBusinessAccount] = useState<BusinessAccount>({
+        id,
+        email: emailFromPreviousPage,
+        password: '',
+        phone: '',
+        companyName: '',
+        firstName: '',
+        lastName: '',
+        companyAddress: '',
+        businessOrTrade: 'DEFAULT'
+    });
     const validationSchema = Yup.object({
         email: Yup.string()
             .email()
@@ -40,10 +73,20 @@ const CreateBusinessAccountPage: React.FC = () => {
     const formik = useFormik({
         initialValues,
         validationSchema,
-        onSubmit: () => {
-
+        onSubmit: (values) => {
+            console.log('values', values);
+            createUser(values);
+            createCode(values.email || '');
         }
     });
+
+    const handleOnChangePassword = (password: string) => {
+        setNewBusinessAccount({...newBusinessAccount, password});
+    }
+
+    const handlePhoneInput = (phone: string) => {
+        setNewBusinessAccount({...newBusinessAccount, phone});
+    }
 
     return (
         <>
@@ -60,7 +103,9 @@ const CreateBusinessAccountPage: React.FC = () => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="password" />
+                        <InputPassword
+                            handlePasswordInput={handleOnChangePassword}
+                            />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="CompanyName" className="form-label">Company Name</label>
@@ -75,9 +120,11 @@ const CreateBusinessAccountPage: React.FC = () => {
                         <input type="text" className="form-control" id="lastName" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="phone" className="form-label">Phone</label>
-                        <input type="text" className="form-control" id="phone" />
-                    </div>
+                        <PhoneInput
+                                    value={newBusinessAccount.phone}
+                                    onChange={handlePhoneInput}
+                                    />
+                        </div>
                     <div className="mb-3">
                         <label htmlFor="companyAddress" className="form-label">Company Address</label>
                         <input type="text" className="form-control" id="companyAddress" />

@@ -94,13 +94,7 @@ const CreateAccountPage: React.FC = () => {
         console.log('onSelectAccountType', selectedAccountType);
         setNewAccount({...newAccount, accountTypeId: +selectedAccountType.id});
     }
-
-    const isValidForm = () => {
-        return !formik.errors.accountTypeId
-            && !formik.errors.password
-            && !formik.errors.phone;
-    }
-
+    
     return (
         <>
             <div className="row">
