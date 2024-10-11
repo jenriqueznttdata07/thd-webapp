@@ -2,9 +2,7 @@
 import React from 'react';
 import './page.css';
 import { useSearchParams } from 'next/navigation';
-import { getCode } from "@/app/services/auth.service";
-
-
+import { getCode } from '@/services/auth.service'; 
 
 interface CodeDisplayProps {
   code: string;

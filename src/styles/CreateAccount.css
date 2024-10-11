@@ -24,3 +24,12 @@
 .p-benefits-account {
     display: inline-block;
 }
+
+.btn-step {
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.btn-step:hover {
+    background-color: #ff944d;
+}

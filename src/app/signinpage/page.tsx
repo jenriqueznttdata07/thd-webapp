@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './page.css';
 import { useRouter } from "next/navigation";
-import { isRegister, updateIsFirstTime } from "@/app/services/auth.service";
+import { isRegister, updateIsFirstTime } from "@/services/auth.service";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import SideModal from '@/components/SideModal'; 

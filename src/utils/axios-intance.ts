@@ -1,0 +1,8 @@
+import axios from 'axios';
+
+const AxiosIntance = axios.create({
+    baseURL: 'http://localhost:3001/',
+    timeout: 3000
+});
+
+export default AxiosIntance;

@@ -1,10 +1,9 @@
-import { ACCOUNT_TYPES } from "@/app/data/account-types";
 import CardAccountType from "../CardAccountType";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { AccountType } from "@/domain/models/AccountType";
 import AccountBenefit from "../AccountBenefit";
 import { cloneDeep } from 'lodash';
-import * as AccountTypesService from "../../../app/services/account-types.service";
+import * as AccountTypesService from "../../../services/account-types.service";
 
 interface StepOneProps {
     setIsStepOneCompleted: Dispatch<SetStateAction<boolean>>;
@@ -33,19 +32,20 @@ const StepOne: React.FC<StepOneProps> = ({ setIsStepOneCompleted }) => {
         <CardAccountType
             key={accountType.id}
             accountType={accountType} 
-            handleClickAccountType={handleClickAccountType}>
+            handleClickAccountType={handleClickAccountType}
+            isSelected={accountTypeSelected?.id === accountType.id}>
         </CardAccountType>
     ));
 
     return (
         <>
-            <div className="row">
+            <div className="row justify-content-center">
                 {cardAccountTypeView}
-                <div className="row">
-                    {accountTypeSelected 
-                        && accountTypeSelected.benefits.map(benefit => (
-                        <AccountBenefit key={benefit.name} benefit={benefit}></AccountBenefit>))}
-                </div>
+            </div>
+            <div className="row justify-content-start">
+                {accountTypeSelected 
+                    && accountTypeSelected.benefits.map(benefit => (
+                    <AccountBenefit key={benefit.name} benefit={benefit}></AccountBenefit>))}
             </div>
         </>
     )
