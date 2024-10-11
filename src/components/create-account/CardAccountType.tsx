@@ -1,4 +1,5 @@
 import { AccountType } from "@/domain/models/AccountType";
+import "@/styles/CreateAccount.css";
 
 interface CardAccountTypeProps {
     accountType: AccountType;

@@ -20,7 +20,7 @@
   ],
   "account-types": [
     {
-      "id": "1",
+      "id": 1,
       "name": "MySelf",
       "accountType": "Personal Account",
       "icons": [
@@ -58,12 +58,12 @@
       ]
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "My Business",
       "accountType": "Pro Xtra Account",
       "icons": [
         {
-          "image": "thd-myself.svg",
+          "image": "thd-pro-xtra.svg",
           "name": "TheHomeDepotMySelf"
         }
       ],
